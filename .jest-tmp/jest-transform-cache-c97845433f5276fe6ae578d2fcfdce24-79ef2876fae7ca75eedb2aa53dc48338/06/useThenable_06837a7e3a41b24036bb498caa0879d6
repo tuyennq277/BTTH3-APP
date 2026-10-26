@@ -1,0 +1,54 @@
+600397eac3a136e9e4ae5d8fb4d2fb08
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.useThenable = useThenable;
+var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
+var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/slicedToArray"));
+var React = _interopRequireWildcard(require("react"));
+var cache;
+function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var r, c, a = Object.defineProperty, n = { __proto__: null, default: e }; if (Object(e) !== e) return n; if (cache || "function" != typeof WeakMap || (cache = new WeakMap()), cache) { if (cache.has(e)) return cache.get(e); cache.set(e, n); } for (c in e) "default" !== c && {}.hasOwnProperty.call(e, c) && ((r = a && Object.getOwnPropertyDescriptor(e, c)) && (r.get || r.set) ? a(n, c, r) : n[c] = e[c]); return n; }
+function useThenable(create) {
+  var _React$useState = React.useState(create),
+    _React$useState2 = (0, _slicedToArray2.default)(_React$useState, 1),
+    promise = _React$useState2[0];
+  var initialState = [false, undefined];
+  promise.then(result => {
+    initialState = [true, result];
+  });
+  var _React$useState3 = React.useState(initialState),
+    _React$useState4 = (0, _slicedToArray2.default)(_React$useState3, 2),
+    state = _React$useState4[0],
+    setState = _React$useState4[1];
+  var _state = (0, _slicedToArray2.default)(state, 1),
+    resolved = _state[0];
+  React.useEffect(() => {
+    var cancelled = false;
+    var resolve = function () {
+      var _ref = (0, _asyncToGenerator2.default)(function* () {
+        var result;
+        try {
+          result = yield promise;
+        } finally {
+          if (!cancelled) {
+            setState([true, result]);
+          }
+        }
+      });
+      return function resolve() {
+        return _ref.apply(this, arguments);
+      };
+    }();
+    if (!resolved) {
+      resolve();
+    }
+    return () => {
+      cancelled = true;
+    };
+  }, [promise, resolved]);
+  return state;
+}
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJSZWFjdCIsIl9pbnRlcm9wUmVxdWlyZVdpbGRjYXJkIiwicmVxdWlyZSIsImNhY2hlIiwiZSIsInQiLCJfX2VzTW9kdWxlIiwiciIsImMiLCJhIiwiT2JqZWN0IiwiZGVmaW5lUHJvcGVydHkiLCJuIiwiX19wcm90b19fIiwiZGVmYXVsdCIsIldlYWtNYXAiLCJoYXMiLCJnZXQiLCJzZXQiLCJoYXNPd25Qcm9wZXJ0eSIsImNhbGwiLCJnZXRPd25Qcm9wZXJ0eURlc2NyaXB0b3IiLCJ1c2VUaGVuYWJsZSIsImNyZWF0ZSIsIl9SZWFjdCR1c2VTdGF0ZSIsInVzZVN0YXRlIiwiX1JlYWN0JHVzZVN0YXRlMiIsIl9zbGljZWRUb0FycmF5MiIsInByb21pc2UiLCJpbml0aWFsU3RhdGUiLCJ1bmRlZmluZWQiLCJ0aGVuIiwicmVzdWx0IiwiX1JlYWN0JHVzZVN0YXRlMyIsIl9SZWFjdCR1c2VTdGF0ZTQiLCJzdGF0ZSIsInNldFN0YXRlIiwiX3N0YXRlIiwicmVzb2x2ZWQiLCJ1c2VFZmZlY3QiLCJjYW5jZWxsZWQiLCJyZXNvbHZlIiwiX3JlZiIsIl9hc3luY1RvR2VuZXJhdG9yMiIsImFwcGx5IiwiYXJndW1lbnRzIl0sInNvdXJjZXMiOlsiLi4vLi4vc3JjL3VzZVRoZW5hYmxlLnRzeCJdLCJzb3VyY2VzQ29udGVudCI6W251bGxdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7O0FBQUEsSUFBQUEsS0FBQSxHQUFBQyx1QkFBQSxDQUFBQyxPQUFBO0FBQThCLElBQUFDLEtBQUE7QUFBQSxTQUFBRix3QkFBQUcsQ0FBQSxFQUFBQyxDQUFBLFNBQUFBLENBQUEsSUFBQUQsQ0FBQSxJQUFBQSxDQUFBLENBQUFFLFVBQUEsU0FBQUYsQ0FBQSxNQUFBRyxDQUFBLEVBQUFDLENBQUEsRUFBQUMsQ0FBQSxHQUFBQyxNQUFBLENBQUFDLGNBQUEsRUFBQUMsQ0FBQSxLQUFBQyxTQUFBLFFBQUFDLE9BQUEsRUFBQVYsQ0FBQSxRQUFBTSxNQUFBLENBQUFOLENBQUEsTUFBQUEsQ0FB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

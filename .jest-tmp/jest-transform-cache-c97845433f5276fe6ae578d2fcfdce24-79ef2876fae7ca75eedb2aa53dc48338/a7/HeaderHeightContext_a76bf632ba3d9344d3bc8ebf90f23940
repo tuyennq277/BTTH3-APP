@@ -1,0 +1,10 @@
+dc228bba07a8a354b635aff00fa8a06f
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.HeaderHeightContext = void 0;
+var _getNamedContext = require("../getNamedContext.js");
+var HeaderHeightContext = exports.HeaderHeightContext = (0, _getNamedContext.getNamedContext)('HeaderHeightContext', undefined);
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJfZ2V0TmFtZWRDb250ZXh0IiwicmVxdWlyZSIsIkhlYWRlckhlaWdodENvbnRleHQiLCJleHBvcnRzIiwiZ2V0TmFtZWRDb250ZXh0IiwidW5kZWZpbmVkIl0sInNvdXJjZXMiOlsiLi4vLi4vLi4vc3JjL0hlYWRlci9IZWFkZXJIZWlnaHRDb250ZXh0LnRzeCJdLCJzb3VyY2VzQ29udGVudCI6W251bGxdLCJtYXBwaW5ncyI6Ijs7Ozs7O0FBQUEsSUFBQUEsZ0JBQUEsR0FBQUMsT0FBQTtBQUVPLElBQU1DLG1CQUFtQixHQUFBQyxPQUFBLENBQUFELG1CQUFBLEdBQUcsSUFBQUUsZ0NBQWUsRUFDaEQscUJBQXFCLEVBQ3JCQyxTQUNGLENBQUMiLCJpZ25vcmVMaXN0IjpbXX0=

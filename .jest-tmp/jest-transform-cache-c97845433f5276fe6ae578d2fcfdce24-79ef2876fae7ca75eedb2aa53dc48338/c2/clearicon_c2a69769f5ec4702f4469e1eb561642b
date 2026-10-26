@@ -1,0 +1,5 @@
+72f89d796f2a54effe83cbc577087121
+module.exports = {
+      testUri:
+        "../../@react-navigation/elements/lib/module/assets/clear-icon.png"
+    };

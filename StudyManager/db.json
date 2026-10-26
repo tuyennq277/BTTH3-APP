@@ -1,0 +1,431 @@
+{
+  "students": [
+    {
+      "id": 1,
+      "studentCode": "B23DCCC178",
+      "fullName": "Nguyễn Quang Tuyếnnnnn",
+      "className": "D23CQCC02-B",
+      "major": "Cử nhân CNTT",
+      "email": "TuyenNQ.B23CC178@stu.ptit.edu.vn",
+      "phone": "0987654321",
+      "updatedAt": "2026-10-26T08:18:29.881Z"
+    },
+    {
+      "id": 2,
+      "studentCode": "B23DCCC179",
+      "fullName": "Trần Minh Anh",
+      "className": "D23CQCC02-B",
+      "major": "Cử nhân CNTT",
+      "email": "sv2@stu.ptit.edu.vn",
+      "phone": "0912345670",
+      "updatedAt": "2026-10-20T08:00:00.000Z"
+    },
+    {
+      "id": 3,
+      "studentCode": "B23DCCC180",
+      "fullName": "Lê Hoàng Nam",
+      "className": "D23CQCC02-B",
+      "major": "Cử nhân CNTT",
+      "email": "sv3@stu.ptit.edu.vn",
+      "phone": "0912345671",
+      "updatedAt": "2026-10-20T08:00:00.000Z"
+    },
+    {
+      "id": 4,
+      "studentCode": "B23DCCC181",
+      "fullName": "Phạm Thu Hà",
+      "className": "D23CQCC02-B",
+      "major": "Cử nhân CNTT",
+      "email": "sv4@stu.ptit.edu.vn",
+      "phone": "0912345672",
+      "updatedAt": "2026-10-20T08:00:00.000Z"
+    },
+    {
+      "id": 5,
+      "studentCode": "B23DCCC182",
+      "fullName": "Đỗ Đức Huy",
+      "className": "D23CQCC02-B",
+      "major": "Cử nhân CNTT",
+      "email": "sv5@stu.ptit.edu.vn",
+      "phone": "0912345673",
+      "updatedAt": "2026-10-20T08:00:00.000Z"
+    }
+  ],
+  "courses": [
+    {
+      "id": "course-1",
+      "code": "RIPT1412-20261-01-01-TH",
+      "name": "Lập trình Thiết bị Di động",
+      "credits": 3,
+      "lecturer": "Thầy Trần Quang Đại",
+      "description": "Môn học trang bị kiến thức và kỹ năng phát triển ứng dụng di động đa nền tảng với React Native (Lớp học phần RIPT1412-20261-01-01-TH): xây dựng giao diện với Flexbox, quản lý trạng thái bằng Hooks, điều hướng đa màn hình với React Navigation, lưu trữ cục bộ với AsyncStorage/SQLite và kết nối RESTful API.",
+      "semester": "HK1 2026-2027"
+    },
+    {
+      "id": "course-2",
+      "code": "INT1340",
+      "name": "Nhập môn Trí tuệ Nhân tạo",
+      "credits": 3,
+      "lecturer": "PGS.TS. Phạm Văn Hùng",
+      "description": "Nghiên cứu các thuật toán tìm kiếm mù và tìm kiếm có thông tin (A*, Minimax, Alpha-Beta), biểu diễn tri thức, suy diễn logic và các mô hình Học máy cơ bản (Hồi quy tuyến tính, Cây quyết định, Mạng nơ-ron nhân tạo).",
+      "semester": "HK1 2026-2027"
+    },
+    {
+      "id": "course-3",
+      "code": "INT1434",
+      "name": "Phát triển Ứng dụng Web",
+      "credits": 3,
+      "lecturer": "ThS. Nguyễn Thị Mai Anh",
+      "description": "Xây dựng ứng dụng Web hiện đại theo kiến trúc Client-Server: thiết kế giao diện đáp ứng (Responsive UI), phát triển Frontend với React/TypeScript, xây dựng Backend REST API với Node.js/Express và xác thực người dùng bằng JWT.",
+      "semester": "HK1 2026-2027"
+    },
+    {
+      "id": "course-4",
+      "code": "INT1416",
+      "name": "An toàn và Bảo mật Thông tin",
+      "credits": 3,
+      "lecturer": "TS. Đặng Minh Đức",
+      "description": "Cung cấp kiến thức nền tảng về mật mã học cổ điển và hiện đại (AES, RSA, SHA), chữ ký số, giao thức bảo mật mạng (TLS/SSL), phát hiện và phòng chống các lỗ hổng ứng dụng phổ biến theo chuẩn OWASP Top 10.",
+      "semester": "HK1 2026-2027"
+    },
+    {
+      "id": "course-5",
+      "code": "INT1422",
+      "name": "Cơ sở Dữ liệu Phân tán",
+      "credits": 2,
+      "lecturer": "TS. Vũ Thanh Tùng",
+      "description": "Nguyên lý thiết kế cơ sở dữ liệu phân tán, các chiến lược phân mảnh dữ liệu (ngang, dọc, hỗn hợp), cấp phát dữ liệu, tối ưu hóa truy vấn phân tán và quản lý giao dịch đồng thời hai pha (2PC).",
+      "semester": "HK1 2026-2027"
+    },
+    {
+      "id": "course-6",
+      "code": "INT1306",
+      "name": "Cấu trúc Dữ liệu và Giải thuật",
+      "credits": 3,
+      "lecturer": "TS. Hoàng Văn Kiên",
+      "description": "Phân tích độ phức tạp thuật toán, các cấu trúc dữ liệu danh sách liên kết, ngăn xếp, hàng đợi, cây nhị phân tìm kiếm, cây cân bằng AVL, bảng băm và các thuật toán đồ thị (BFS, DFS, Dijkstra, Kruskal).",
+      "semester": "HK2 2025-2026"
+    },
+    {
+      "id": "course-7",
+      "code": "INT1332",
+      "name": "Nhập môn Công nghệ Phần mềm",
+      "credits": 3,
+      "lecturer": "ThS. Bùi Thu Trang",
+      "description": "Quy trình phát triển phần mềm theo mô hình Agile/Scrum, phân tích và đặc tả yêu cầu phần mềm (SRS), thiết kế kiến trúc bằng biểu đồ UML, kiểm thử phần mềm (Unit Test, Integration Test) và quản lý cấu hình với Git.",
+      "semester": "HK2 2025-2026"
+    },
+    {
+      "id": "course-8",
+      "code": "INT1319",
+      "name": "Hệ điều hành",
+      "credits": 3,
+      "lecturer": "TS. Ngô Quang Huy",
+      "description": "Kiến trúc hệ điều hành, quản lý tiến trình và luồng (Threads), lập lịch CPU, đồng bộ hóa tiến trình (Semaphore, Mutex, Deadlock), quản lý bộ nhớ ảo phân trang và hệ thống tệp tin trên Linux/Windows.",
+      "semester": "HK1 2025-2026"
+    },
+    {
+      "id": "course-9",
+      "code": "INT1336",
+      "name": "Mạng Máy tính",
+      "credits": 3,
+      "lecturer": "PGS.TS. Trịnh Đình Thắng",
+      "description": "Mô hình tham chiếu OSI và bộ giao thức TCP/IP, các giao thức tầng ứng dụng (HTTP, DNS, DHCP), tầng giao vận (TCP, UDP), định tuyến tầng mạng (IPv4/IPv6, OSPF, BGP) và thực hành cấu hình mạng với Cisco Packet Tracer.",
+      "semester": "HK1 2025-2026"
+    }
+  ],
+  "sessions": [
+    {
+      "id": "sched-1",
+      "courseId": "course-1",
+      "dayOfWeek": 2,
+      "startTime": "07:30",
+      "endTime": "09:30",
+      "room": "P.402 - Tòa A2",
+      "note": "Sinh viên mang theo laptop đã cài sẵn Android Studio hoặc kết nối thiết bị thật để chạy demo điều hướng 5 màn hình chính và 4 màn hình chi tiết."
+    },
+    {
+      "id": "sched-2",
+      "courseId": "course-2",
+      "dayOfWeek": 2,
+      "startTime": "14:00",
+      "endTime": "16:30",
+      "room": "P.305 - Tòa A1",
+      "note": "Đọc trước chương 3 giáo trình AI và chuẩn bị bài tập cài đặt giải bài toán 8-Puzzle bằng Python."
+    },
+    {
+      "id": "sched-3",
+      "courseId": "course-1",
+      "dayOfWeek": 2,
+      "startTime": "17:00",
+      "endTime": "18:30",
+      "room": "Lab 302 - Tòa B1",
+      "note": "Kiểm tra tiến độ bài tập lớn Quản lý học tập của từng sinh viên."
+    },
+    {
+      "id": "sched-4",
+      "courseId": "course-3",
+      "dayOfWeek": 3,
+      "startTime": "08:00",
+      "endTime": "10:30",
+      "room": "Lab 204 - Tòa B1",
+      "note": "Hoàn thành bài lab số 4 trên hệ thống LMS trước khi vào lớp."
+    },
+    {
+      "id": "sched-5",
+      "courseId": "course-4",
+      "dayOfWeek": 3,
+      "startTime": "14:00",
+      "endTime": "16:30",
+      "room": "P.501 - Tòa A2",
+      "note": "Mang theo máy tính bỏ túi để tính toán số học modulo trên lớp."
+    },
+    {
+      "id": "sched-6",
+      "courseId": "course-2",
+      "dayOfWeek": 4,
+      "startTime": "07:30",
+      "endTime": "09:30",
+      "room": "P.305 - Tòa A1",
+      "note": "Thảo luận nhóm về ứng dụng thuật toán cờ caro / cờ vua."
+    },
+    {
+      "id": "sched-7",
+      "courseId": "course-5",
+      "dayOfWeek": 4,
+      "startTime": "13:30",
+      "endTime": "15:30",
+      "room": "P.208 - Tòa A3",
+      "note": "Ôn lại đại số quan hệ và các vị từ đơn giản."
+    },
+    {
+      "id": "sched-8",
+      "courseId": "course-6",
+      "dayOfWeek": 5,
+      "startTime": "08:30",
+      "endTime": "10:30",
+      "room": "P.301 - Tòa A1",
+      "note": "Buổi phụ đạo tự chọn dành cho đội tuyển Olympic Tin học & sinh viên."
+    },
+    {
+      "id": "sched-9",
+      "courseId": "course-1",
+      "dayOfWeek": 5,
+      "startTime": "13:30",
+      "endTime": "15:30",
+      "room": "Lab 305 - Tòa B1",
+      "note": "Chấm điểm thực hành tại phòng máy Lab 305."
+    },
+    {
+      "id": "sched-10",
+      "courseId": "course-4",
+      "dayOfWeek": 6,
+      "startTime": "07:30",
+      "endTime": "09:30",
+      "room": "P.501 - Tòa A2",
+      "note": "Thực hành phân tích gói tin trên môi trường máy ảo Kali Linux."
+    },
+    {
+      "id": "sched-11",
+      "courseId": "course-3",
+      "dayOfWeek": 6,
+      "startTime": "13:30",
+      "endTime": "16:00",
+      "room": "Lab 204 - Tòa B1",
+      "note": "Cài đặt sẵn Postman để kiểm thử các endpoint API."
+    },
+    {
+      "id": "sched-12",
+      "courseId": "course-5",
+      "dayOfWeek": 7,
+      "startTime": "08:00",
+      "endTime": "10:00",
+      "room": "Lab 105 - Tòa B1",
+      "note": "Nộp báo cáo kết quả thực hành ngay cuối buổi học."
+    },
+    {
+      "id": "sched-13",
+      "courseId": "course-7",
+      "dayOfWeek": 7,
+      "startTime": "14:00",
+      "endTime": "16:00",
+      "room": "Hội trường B2",
+      "note": "Các nhóm mang theo slide thuyết trình tiến độ Sprint 2."
+    },
+    {
+      "id": "sched-14",
+      "courseId": "course-1",
+      "dayOfWeek": 8,
+      "startTime": "09:00",
+      "endTime": "11:00",
+      "room": "Phòng Tự học Tầng 3 - Thư viện",
+      "note": "Kiểm tra đầy đủ 5 tab chính và 4 màn hình chi tiết trước khi nộp bài."
+    }
+  ],
+  "assignments": [
+    {
+      "id": "assign-1",
+      "courseId": "course-1",
+      "title": "Thực hành 4: API và chế độ offline",
+      "description": "Kết nối REST API, lưu cache, đồng bộ hàng đợi và xử lý xung đột.",
+      "dueDate": "2026-10-29T16:59:00.000Z",
+      "status": "todo",
+      "updatedAt": "2026-10-20T08:00:00.000Z"
+    },
+    {
+      "id": "assign-2",
+      "courseId": "course-2",
+      "title": "Cài đặt thuật toán tìm kiếm A* giải bài toán 8-Puzzle",
+      "description": "Viết chương trình bằng Python cài đặt thuật toán A* sử dụng hai hàm Heuristic: số ô sai vị trí (Misplaced Tiles) và khoảng cách Manhattan để tìm đường đi ngắn nhất cho bài toán 8-Puzzle.",
+      "dueDate": "2026-10-31T13:00:00.000Z",
+      "status": "todo",
+      "updatedAt": "2026-10-26T07:47:23.011Z"
+    },
+    {
+      "id": "assign-3",
+      "courseId": "course-4",
+      "title": "Báo cáo phân tích lỗ hổng SQL Injection & XSS trên DVWA",
+      "description": "Thực hiện tấn công thử nghiệm và đề xuất giải pháp vá lỗ hổng SQL Injection cùng Cross-Site Scripting (Reflected & Stored XSS) ở các mức độ Low, Medium, High trên môi trường Damn Vulnerable Web Application (DVWA).",
+      "dueDate": "2026-10-25T11:00:00.000Z",
+      "status": "todo",
+      "updatedAt": "2026-10-20T08:00:00.000Z"
+    },
+    {
+      "id": "assign-4",
+      "courseId": "course-3",
+      "title": "Thiết kế RESTful API quản lý sinh viên với Node.js & JWT",
+      "description": "Xây dựng hệ thống Backend REST API cung cấp các chức năng đăng nhập, phân quyền JWT và CRUD dữ liệu môn học, điểm số cho cổng thông tin sinh viên.",
+      "dueDate": "2026-10-15T16:59:00.000Z",
+      "status": "todo",
+      "updatedAt": "2026-10-20T08:00:00.000Z"
+    },
+    {
+      "id": "assign-5",
+      "courseId": "course-5",
+      "title": "Bài tập thiết kế lược đồ phân mảnh ngang và dọc CSDL Ngân hàng",
+      "description": "Cho lược đồ cơ sở dữ liệu toàn cục của hệ thống Ngân hàng có 3 chi nhánh (Hà Nội, Đà Nẵng, TP.HCM). Hãy thiết kế lược đồ phân mảnh ngang nguyên thủy, phân mảnh ngang dẫn xuất và chứng minh tính đầy đủ, tái tạo và tách biệt.",
+      "dueDate": "2026-10-20T16:59:00.000Z",
+      "status": "todo",
+      "updatedAt": "2026-10-20T08:00:00.000Z"
+    },
+    {
+      "id": "assign-6",
+      "courseId": "course-1",
+      "title": "Bài thực hành số 1: Thiết kế giao diện Profile & Dashboard với Flexbox",
+      "description": "Sử dụng các Core Components của React Native (View, Text, ScrollView, StyleSheet, TouchableOpacity) và Flexbox để dựng giao diện thẻ sinh viên và bảng thống kê học tập.",
+      "dueDate": "2026-10-05T16:59:00.000Z",
+      "status": "done",
+      "updatedAt": "2026-10-20T08:00:00.000Z"
+    },
+    {
+      "id": "assign-7",
+      "courseId": "course-2",
+      "title": "Bài tập tuần 2: Cài đặt thuật toán BFS, DFS và UCS trên đồ thị",
+      "description": "Cài đặt các thuật toán tìm kiếm mù (Breadth-First Search, Depth-First Search, Uniform Cost Search) để tìm đường đi từ thành phố Arad đến Bucharest trên bản đồ Romania.",
+      "dueDate": "2026-10-02T16:59:00.000Z",
+      "status": "done",
+      "updatedAt": "2026-10-20T08:00:00.000Z"
+    },
+    {
+      "id": "assign-8",
+      "courseId": "course-3",
+      "title": "Tối ưu hóa hiệu năng giao diện danh sách và xử lý Form Validation",
+      "description": "Xây dựng biểu mẫu cập nhật thông tin cá nhân sinh viên có kiểm tra định dạng Email, Số điện thoại và bộ lọc tìm kiếm theo thời gian thực.",
+      "dueDate": "2026-10-09T16:59:00.000Z",
+      "status": "todo",
+      "updatedAt": "2026-10-20T08:00:00.000Z"
+    }
+  ],
+  "grades": [
+    {
+      "id": "grade-1",
+      "courseId": "course-1",
+      "semester": "HK1 2026-2027",
+      "attendance": 9.5,
+      "midterm": 8.8,
+      "final": 9,
+      "total": 8.99,
+      "letter": "A"
+    },
+    {
+      "id": "grade-2",
+      "courseId": "course-2",
+      "semester": "HK1 2026-2027",
+      "attendance": 9,
+      "midterm": 8.2,
+      "final": 8.5,
+      "total": 8.46,
+      "letter": "B+"
+    },
+    {
+      "id": "grade-3",
+      "courseId": "course-3",
+      "semester": "HK1 2026-2027",
+      "attendance": 9,
+      "midterm": 8,
+      "final": 8.2,
+      "total": 8.22,
+      "letter": "B+"
+    },
+    {
+      "id": "grade-4",
+      "courseId": "course-4",
+      "semester": "HK1 2026-2027",
+      "attendance": 8.5,
+      "midterm": 7.8,
+      "final": 8,
+      "total": 7.99,
+      "letter": "B"
+    },
+    {
+      "id": "grade-5",
+      "courseId": "course-5",
+      "semester": "HK1 2026-2027",
+      "attendance": 9.5,
+      "midterm": 8.5,
+      "final": 8.8,
+      "total": 8.78,
+      "letter": "A"
+    },
+    {
+      "id": "grade-6",
+      "courseId": "course-6",
+      "semester": "HK2 2025-2026",
+      "attendance": 10,
+      "midterm": 9,
+      "final": 9.2,
+      "total": 9.22,
+      "letter": "A"
+    },
+    {
+      "id": "grade-7",
+      "courseId": "course-7",
+      "semester": "HK2 2025-2026",
+      "attendance": 9,
+      "midterm": 8,
+      "final": 8.4,
+      "total": 8.34,
+      "letter": "B+"
+    },
+    {
+      "id": "grade-8",
+      "courseId": "course-8",
+      "semester": "HK1 2025-2026",
+      "attendance": 8.5,
+      "midterm": 7.5,
+      "final": 8,
+      "total": 7.9,
+      "letter": "B"
+    },
+    {
+      "id": "grade-9",
+      "courseId": "course-9",
+      "semester": "HK1 2025-2026",
+      "attendance": 9,
+      "midterm": 8.5,
+      "final": 8.6,
+      "total": 8.61,
+      "letter": "A"
+    }
+  ]
+}

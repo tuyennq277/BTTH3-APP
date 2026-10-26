@@ -1,0 +1,64 @@
+5bd296c1f43919a9fe2e8568695ed354
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "BottomTabBar", {
+  enumerable: true,
+  get: function () {
+    return _BottomTabBar.BottomTabBar;
+  }
+});
+Object.defineProperty(exports, "BottomTabBarHeightCallbackContext", {
+  enumerable: true,
+  get: function () {
+    return _BottomTabBarHeightCallbackContext.BottomTabBarHeightCallbackContext;
+  }
+});
+Object.defineProperty(exports, "BottomTabBarHeightContext", {
+  enumerable: true,
+  get: function () {
+    return _BottomTabBarHeightContext.BottomTabBarHeightContext;
+  }
+});
+Object.defineProperty(exports, "BottomTabView", {
+  enumerable: true,
+  get: function () {
+    return _BottomTabView.BottomTabView;
+  }
+});
+exports.TransitionSpecs = exports.TransitionPresets = exports.SceneStyleInterpolators = void 0;
+Object.defineProperty(exports, "createBottomTabNavigator", {
+  enumerable: true,
+  get: function () {
+    return _createBottomTabNavigator.createBottomTabNavigator;
+  }
+});
+Object.defineProperty(exports, "createBottomTabScreen", {
+  enumerable: true,
+  get: function () {
+    return _createBottomTabNavigator.createBottomTabScreen;
+  }
+});
+Object.defineProperty(exports, "useBottomTabBarHeight", {
+  enumerable: true,
+  get: function () {
+    return _useBottomTabBarHeight.useBottomTabBarHeight;
+  }
+});
+var SceneStyleInterpolators = _interopRequireWildcard(require("./TransitionConfigs/SceneStyleInterpolators.js"));
+exports.SceneStyleInterpolators = SceneStyleInterpolators;
+var TransitionPresets = _interopRequireWildcard(require("./TransitionConfigs/TransitionPresets.js"));
+exports.TransitionPresets = TransitionPresets;
+var TransitionSpecs = _interopRequireWildcard(require("./TransitionConfigs/TransitionSpecs.js"));
+exports.TransitionSpecs = TransitionSpecs;
+var _createBottomTabNavigator = require("./navigators/createBottomTabNavigator.js");
+var _BottomTabBar = require("./views/BottomTabBar.js");
+var _BottomTabView = require("./views/BottomTabView.js");
+var _BottomTabBarHeightCallbackContext = require("./utils/BottomTabBarHeightCallbackContext.js");
+var _BottomTabBarHeightContext = require("./utils/BottomTabBarHeightContext.js");
+var _useBottomTabBarHeight = require("./utils/useBottomTabBarHeight.js");
+var cache;
+function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var r, c, a = Object.defineProperty, n = { __proto__: null, default: e }; if (Object(e) !== e) return n; if (cache || "function" != typeof WeakMap || (cache = new WeakMap()), cache) { if (cache.has(e)) return cache.get(e); cache.set(e, n); } for (c in e) "default" !== c && {}.hasOwnProperty.call(e, c) && ((r = a && Object.getOwnPropertyDescriptor(e, c)) && (r.get || r.set) ? a(n, c, r) : n[c] = e[c]); return n; }
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJTY2VuZVN0eWxlSW50ZXJwb2xhdG9ycyIsIl9pbnRlcm9wUmVxdWlyZVdpbGRjYXJkIiwicmVxdWlyZSIsImV4cG9ydHMiLCJUcmFuc2l0aW9uUHJlc2V0cyIsIlRyYW5zaXRpb25TcGVjcyIsIl9jcmVhdGVCb3R0b21UYWJOYXZpZ2F0b3IiLCJfQm90dG9tVGFiQmFyIiwiX0JvdHRvbVRhYlZpZXciLCJfQm90dG9tVGFiQmFySGVpZ2h0Q2FsbGJhY2tDb250ZXh0IiwiX0JvdHRvbVRhYkJhckhlaWdodENvbnRleHQiLCJfdXNlQm90dG9tVGFiQmFySGVpZ2h0IiwiY2FjaGUiLCJlIiwidCIsIl9fZXNNb2R1bGUiLCJyIiwiYyIsImEiLCJPYmplY3QiLCJkZWZpbmVQcm9wZXJ0eSIsIm4iLCJfX3Byb3RvX18iLCJkZWZhdWx0IiwiV2Vha01hcCIsImhhcyIsImdldCIsInNldCIsImhhc093blByb3BlcnR5IiwiY2FsbCIsImdldE93blByb3BlcnR5RGVzY3JpcHRvciJdLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy9pbmRleC50c3giXSwic291cmNlc0NvbnRlbnQiOltudWxsXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztBQUFBLElBQUFBLHVCQUFBLEdBQUFDLHVCQUFBLENBQUFDLE9BQUE7QUFBc0ZDLE9BQUEsQ0FBQUgsdUJBQUEsR0FBQUEsdUJBQUE7QUFDdEYsSUFBQUksaUJBQUEsR0FBQUgsdUJBQUEsQ0FBQUMsT0FBQTtBQUEwRUMsT0FBQSxDQUFBQyxpQkFBQSxHQUFBQSxpQkFBQTtBQUMxRSxJQUFBQyxlQUFBLEdBQUFKLHVCQUFBLENBQUFDLE9BQUE7QUFBc0VDLE9BQUEsQ0FBQUUsZUFBQSxHQUFBQSxlQUFBO0FBVXRFLElBQUFDLHlCQUFBLEdBQUFKLE9BQUE7QUFTQSxJQUFBSyxhQUFBLEdBQUFMLE9BQUE7QUFDQSxJQUFBTSxjQUFBLEdBQUFOLE9BQUE7QUFLQSxJQUFBTyxrQ0FBQSxHQUFBUCxPQUFBO0FBQ0EsSUFBQVEsMEJBQUEsR0FBQVIsT0FBQTtBQUNBLElBQUFTLHNCQUFBLEdBQUFULE9BQUE7QUFBcUUsSUFBQVUsS0FBQTtBQUFBLFNBQUFYLHdCQUFBWSxDQUFBLEVBQUFDLENBQUEsU0FBQUEsQ0FBQSxJQUFBRCxDQUFBLElBQUFBLENBQUEsQ0FBQUUsVUFBQSxTQUFBRixDQUFBLE1BQUFHLENBQUEsRUFBQUMsQ0FBQSxFQUFBQyxDQUFBLEdBQUFDLE1BQUEsQ0FBQUMsY0FBQSxFQUFBQyxDQUFBLEtBQUFDLFNBQUEsUUFBQUMsT0FBQSxFQUFBVixDQUFBLFFBQUFNLE1BQUEsQ0FBQU4sQ0FBQSxNQUFBQSxDQUFBLFNBQUFRLENBQUEsTUFBQVQsS0FBQSx5QkFBQVksT0FBQSxLQUFBWixLQUFBLE9BQUFZLE9BQUEsS0FBQVosS0FBQSxRQUFBQSxLQUFBLENBQUFhLEdBQUEsQ0FBQVosQ0FBQSxVQUFBRCxLQUFBLENBQUFjLEdBQUEsQ0FBQWIsQ0FBQSxHQUFBRCxLQUFBLENBQUFlLEdBQUEsQ0FBQWQsQ0FBQSxFQUFBUSxDQUFBLFVBQUFKLENBQUEsSUFBQUosQ0FBQSxnQkFBQUksQ0FBQSxPQUFBVyxjQUFBLENBQUFDLElBQUEsQ0FBQWhCLENBQUEsRUFBQUksQ0FBQSxPQUFBRCxDQUFBLEdBQUFFLENBQUEsSUFBQUMsTUFBQSxDQUFBVyx3QkFBQSxDQUFBakIsQ0FBQSxFQUFBSSxDQUFBLE9BQUFELENBQUEsQ0FBQVUsR0FBQSxJQUFBVixDQUFBLENBQUFXLEdBQUEsSUFBQVQsQ0FBQSxDQUFBRyxDQUFBLEVBQUFKLENBQUEsRUFBQUQsQ0FBQSxJQUFBSyxDQUFBLENBQUFKLENBQUEsSUFBQUosQ0FBQSxDQUFBSSxDQUFBLFdBQUFJLENBQUEiLCJpZ25vcmVMaXN0IjpbXX0=

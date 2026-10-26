@@ -1,0 +1,12 @@
+{
+  "expo": {
+    "name": "Quản lý học tập",
+    "slug": "study-manager-th4",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "android": { "package": "vn.ptit.studymanager", "usesCleartextTraffic": true },
+    "ios": { "bundleIdentifier": "vn.ptit.studymanager", "infoPlist": { "NSAppTransportSecurity": { "NSAllowsLocalNetworking": true } } },
+    "web": { "bundler": "metro" }
+  }
+}

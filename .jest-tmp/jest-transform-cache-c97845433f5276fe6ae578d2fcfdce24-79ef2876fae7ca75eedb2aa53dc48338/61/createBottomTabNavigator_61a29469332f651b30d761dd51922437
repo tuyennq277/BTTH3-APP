@@ -1,0 +1,52 @@
+633816f825e17d4386797fffc202e91f
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.createBottomTabNavigator = createBottomTabNavigator;
+exports.createBottomTabScreen = void 0;
+var _native = require("@react-navigation/native");
+var _BottomTabView = require("../views/BottomTabView.js");
+var _jsxRuntime = require("react/jsx-runtime");
+function BottomTabNavigator({
+  id,
+  initialRouteName,
+  backBehavior,
+  UNSTABLE_routeNamesChangeBehavior,
+  children,
+  layout,
+  screenListeners,
+  screenOptions,
+  screenLayout,
+  UNSTABLE_router,
+  ...rest
+}) {
+  var _useNavigationBuilder = (0, _native.useNavigationBuilder)(_native.TabRouter, {
+      id,
+      initialRouteName,
+      backBehavior,
+      UNSTABLE_routeNamesChangeBehavior,
+      children,
+      layout,
+      screenListeners,
+      screenOptions,
+      screenLayout,
+      UNSTABLE_router
+    }),
+    state = _useNavigationBuilder.state,
+    descriptors = _useNavigationBuilder.descriptors,
+    navigation = _useNavigationBuilder.navigation,
+    render = _useNavigationBuilder.render;
+  return render((0, _jsxRuntime.jsx)(_BottomTabView.BottomTabView, {
+    ...rest,
+    state: state,
+    navigation: navigation,
+    descriptors: descriptors
+  }));
+}
+function createBottomTabNavigator(config) {
+  return (0, _native.createNavigatorFactory)(BottomTabNavigator)(config);
+}
+var createBottomTabScreen = exports.createBottomTabScreen = (0, _native.createScreenFactory)();
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJfbmF0aXZlIiwicmVxdWlyZSIsIl9Cb3R0b21UYWJWaWV3IiwiX2pzeFJ1bnRpbWUiLCJCb3R0b21UYWJOYXZpZ2F0b3IiLCJpZCIsImluaXRpYWxSb3V0ZU5hbWUiLCJiYWNrQmVoYXZpb3IiLCJVTlNUQUJMRV9yb3V0ZU5hbWVzQ2hhbmdlQmVoYXZpb3IiLCJjaGlsZHJlbiIsImxheW91dCIsInNjcmVlbkxpc3RlbmVycyIsInNjcmVlbk9wdGlvbnMiLCJzY3JlZW5MYXlvdXQiLCJVTlNUQUJMRV9yb3V0ZXIiLCJyZXN0IiwiX3VzZU5hdmlnYXRpb25CdWlsZGVyIiwidXNlTmF2aWdhdGlvbkJ1aWxkZXIiLCJUYWJSb3V0ZXIiLCJzdGF0ZSIsImRlc2NyaXB0b3JzIiwibmF2aWdhdGlvbiIsInJlbmRlciIsIl9qc3giLCJCb3R0b21UYWJWaWV3IiwiY3JlYXRlQm90dG9tVGFiTmF2aWdhdG9yIiwiY29uZmlnIiwiY3JlYXRlTmF2aWdhdG9yRmFjdG9yeSIsImNyZWF0ZUJvdHRvbVRhYlNjcmVlbiIsImV4cG9ydHMiLCJjcmVhdGVTY3JlZW5GYWN0b3J5Il0sInNvdXJjZXMiOlsiLi4vLi4vLi4vc3JjL25hdmlnYXRvcnMvY3JlYXRlQm90dG9tVGFiTmF2aWdhdG9yLnRzeCJdLCJzb3VyY2VzQ29udGVudCI6W251bGxdLCJtYXBwaW5ncyI6Ijs7Ozs7OztBQUFBLElBQUFBLE9BQUEsR0FBQUMsT0FBQTtBQW9CQSxJQUFBQyxjQUFBLEdBQUFELE9BQUE7QUFBdUQsSUFBQUUsV0FBQSxHQUFBRixPQUFBO0FBRXZELFNBQVNHLGtCQUFrQkEsQ0FBQztFQUMxQkMsRUFBRTtFQUNGQyxnQkFBZ0I7RUFDaEJDLFlBQVk7RUFDWkMsaUNBQWlDO0VBQ2pDQyxRQUFRO0VBQ1JDLE1BQU07RUFDTkMsZUFBZTtFQUNmQyxhQUFhO0VBQ2JDLFlBQVk7RUFDWkMsZUFBZTtFQUNmLEdBQUdDO0FBQ29CLENBQUMsRUFBRTtFQUMxQixJQUFBQyxxQkFBQSxHQUFtRCxJQUFBQyw0QkFBb0IsRUFNckVDLGlCQUFTLEVBQUU7TUFDWGIsRUFBRTtNQUNGQyxnQkFBZ0I7TUFDaEJDLFlBQVk7TUFDWkMsaUNBQWlDO01BQ2pDQyxRQUFRO01BQ1JDLE1BQU07TUFDTkMsZUFBZTtNQUNmQyxhQUFhO01BQ2JDLFlBQVk7TUFDWkM7SUFDRixDQUFDLENBQUM7SUFqQk1LLEtBQUssR0FBQUgscUJBQUEsQ0FBTEcsS0FBSztJQUFFQyxXQUFXLEdBQUFKLHFCQUFBLENBQVhJLFdBQVc7SUFBRUMsVUFBVSxHQUFBTCxxQkFBQSxDQUFWSyxVQUFVO0lBQUVDLE1BQUEsR0FBQU4scUJBQUEsQ0FBQU0sTUFBQTtFQW1CeEMsT0FBT0EsTUFBTSxDQUNYLElBQUFDLGVBQUEsRUFBQ0MsNEJBQWE7SUFBQSxHQUNSVCxJQUFJO0lBQ1JJLEtBQUssRUFBRUEsS0FBTTtJQUNiRSxVQUFVLEVBQUVBLFVBQVc7SUFDdkJELFdBQVcsRUFBRUE7RUFBWSxDQUMxQixDQUNILENBQUM7QUFDSDtBQXFCTyxTQUFTSyx3QkFBd0JBLENBUXRDQyxNQUFlLEVBQW1DO0VBQ2xELE9BQU8sSUFBQUMsOEJBQXNCLEVBQUN2QixrQkFBa0IsQ0FBQyxDQUFDc0IsTUFBTSxDQUFDO0FBQzNEO0FBRU8sSUFBTUUscUJBQXFCLEdBQUFDLE9BQUEsQ0FBQUQscUJBQUEsR0FBRyxJQUFBRSwyQkFBbUIsRUFBbUIsQ0FBQyIsImlnbm9yZUxpc3QiOltdfQ==

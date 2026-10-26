@@ -94,7 +94,7 @@ export const StudyProvider: React.FC<{children: React.ReactNode}> = ({
             }
           }
         }
-      } catch (_error) {
+      } catch {
         // Nếu AsyncStorage lỗi thì dùng dữ liệu mẫu mặc định
       } finally {
         if (isMounted) {
@@ -151,7 +151,7 @@ export const StudyProvider: React.FC<{children: React.ReactNode}> = ({
         AsyncStorage.removeItem(STORAGE_KEYS.STUDENT_PROFILE),
         AsyncStorage.removeItem(STORAGE_KEYS.ASSIGNMENTS),
       ]);
-    } catch (_error) {}
+    } catch {}
   }, []);
 
   const currentSemesterCourses = useMemo(

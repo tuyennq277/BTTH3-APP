@@ -3,10 +3,14 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "android": "react-native run-android",
+    "android": "npm --prefix StudyManager run android",
     "ios": "react-native run-ios",
     "lint": "eslint .",
-    "start": "react-native start",
+    "start": "npm --prefix StudyManager start",
+    "api": "npm --prefix StudyManager run api",
+    "study:test": "npm --prefix StudyManager test",
+    "legacy:start": "react-native start",
+    "legacy:android": "react-native run-android",
     "test": "jest"
   },
   "dependencies": {

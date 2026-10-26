@@ -1,0 +1,5 @@
+3dd70e12709773dc66f49efe98f0e382
+module.exports = {
+      testUri:
+        "../../@react-navigation/elements/lib/module/assets/search-icon.png"
+    };

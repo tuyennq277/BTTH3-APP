@@ -1,0 +1,1 @@
+{"version":3,"names":["_getNamedContext","require","HeaderBackContext","exports","getNamedContext","undefined"],"sources":["../../../src/Header/HeaderBackContext.tsx"],"sourcesContent":[null],"mappings":";;;;;;AAAA,IAAAA,gBAAA,GAAAC,OAAA;AAEO,IAAMC,iBAAiB,GAAAC,OAAA,CAAAD,iBAAA,GAAG,IAAAE,gCAAe,EAE9C,mBAAmB,EAAEC,SAAS,CAAC","ignoreList":[]}

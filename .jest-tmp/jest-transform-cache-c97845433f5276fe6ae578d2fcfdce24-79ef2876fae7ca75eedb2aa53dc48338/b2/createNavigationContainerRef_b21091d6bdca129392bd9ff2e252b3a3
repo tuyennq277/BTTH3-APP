@@ -1,0 +1,69 @@
+332e70342339c38a678e7e39d8cc1d9a
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.NOT_INITIALIZED_ERROR = void 0;
+exports.createNavigationContainerRef = createNavigationContainerRef;
+var _routers = require("@react-navigation/routers");
+var NOT_INITIALIZED_ERROR = exports.NOT_INITIALIZED_ERROR = "The 'navigation' object hasn't been initialized yet. This might happen if you don't have a navigator mounted, or if the navigator hasn't finished mounting. See https://reactnavigation.org/docs/navigating-without-navigation-prop#handling-initialization for more details.";
+function createNavigationContainerRef() {
+  var methods = [...Object.keys(_routers.CommonActions), 'addListener', 'removeListener', 'resetRoot', 'dispatch', 'isFocused', 'canGoBack', 'getRootState', 'getState', 'getParent', 'getCurrentRoute', 'getCurrentOptions'];
+  var listeners = {};
+  var current = null;
+  var removeListener = (event, callback) => {
+    if (listeners[event]) {
+      listeners[event] = listeners[event].filter(cb => cb !== callback);
+    }
+    current?.removeListener(event, callback);
+  };
+  var ref = {
+    get current() {
+      return current;
+    },
+    set current(value) {
+      current = value;
+      if (value != null) {
+        Object.entries(listeners).forEach(([event, callbacks]) => {
+          callbacks.forEach(callback => {
+            value.addListener(event, callback);
+          });
+        });
+      }
+    },
+    isReady: () => {
+      if (current == null) {
+        return false;
+      }
+      return current.isReady();
+    },
+    ...methods.reduce((acc, name) => {
+      acc[name] = (...args) => {
+        if (name === 'removeListener') {
+          var event = args[0],
+            callback = args[1];
+          removeListener(event, callback);
+        } else if (current == null) {
+          switch (name) {
+            case 'addListener':
+              {
+                var _event = args[0],
+                  _callback = args[1];
+                listeners[_event] = listeners[_event] || [];
+                listeners[_event].push(_callback);
+                return () => removeListener(_event, _callback);
+              }
+            default:
+              console.error(NOT_INITIALIZED_ERROR);
+          }
+        } else {
+          return current[name](...args);
+        }
+      };
+      return acc;
+    }, {})
+  };
+  return ref;
+}
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJfcm91dGVycyIsInJlcXVpcmUiLCJOT1RfSU5JVElBTElaRURfRVJST1IiLCJleHBvcnRzIiwiY3JlYXRlTmF2aWdhdGlvbkNvbnRhaW5lclJlZiIsIm1ldGhvZHMiLCJPYmplY3QiLCJrZXlzIiwiQ29tbW9uQWN0aW9ucyIsImxpc3RlbmVycyIsImN1cnJlbnQiLCJyZW1vdmVMaXN0ZW5lciIsImV2ZW50IiwiY2FsbGJhY2siLCJmaWx0ZXIiLCJjYiIsInJlZiIsInZhbHVlIiwiZW50cmllcyIsImZvckVhY2giLCJjYWxsYmFja3MiLCJhZGRMaXN0ZW5lciIsImlzUmVhZHkiLCJyZWR1Y2UiLCJhY2MiLCJuYW1lIiwiYXJncyIsInB1c2giLCJjb25zb2xlIiwiZXJyb3IiXSwic291cmNlcyI6WyIuLi8uLi9zcmMvY3JlYXRlTmF2aWdhdGlvbkNvbnRhaW5lclJlZi50c3giXSwic291cmNlc0NvbnRlbnQiOltudWxsXSwibWFwcGluZ3MiOiI7Ozs7Ozs7QUFBQSxJQUFBQSxRQUFBLEdBQUFDLE9BQUE7QUFRTyxJQUFNQyxxQkFBcUIsR0FBQUMsT0FBQSxDQUFBRCxxQkFBQSxHQUNoQywrUUFBK1E7QUFFMVEsU0FBU0UsNEJBQTRCQSxDQUFBLEVBRU07RUFDaEQsSUFBTUMsT0FBTyxHQUFHLENBQ2QsR0FBR0MsTUFBTSxDQUFDQyxJQUFJLENBQUNDLHNCQUFhLENBQUMsRUFDN0IsYUFBYSxFQUNiLGdCQUFnQixFQUNoQixXQUFXLEVBQ1gsVUFBVSxFQUNWLFdBQVcsRUFDWCxXQUFXLEVBQ1gsY0FBYyxFQUNkLFVBQVUsRUFDVixXQUFXLEVBQ1gsaUJBQWlCLEVBQ2pCLG1CQUFtQixDQUNYO0VBRVYsSUFBTUMsU0FBdUQsR0FBRyxDQUFDLENBQUM7RUFFbEUsSUFBSUMsT0FBaUQsR0FBRyxJQUFJO0VBRTVELElBQU1DLGNBQWMsR0FBR0EsQ0FDckJDLEtBQWEsRUFDYkMsUUFBa0MsS0FDL0I7SUFDSCxJQUFJSixTQUFTLENBQUNHLEtBQUssQ0FBQyxFQUFFO01BQ3BCSCxTQUFTLENBQUNHLEtBQUssQ0FBQyxHQUFHSCxTQUFTLENBQUNHLEtBQUssQ0FBQyxDQUFDRSxNQUFNLENBQUVDLEVBQUUsSUFBS0EsRUFBRSxLQUFLRixRQUFRLENBQUM7SUFDckU7SUFFQUgsT0FBTyxFQUFFQyxjQUFjLENBQ3JCQyxLQUFLLEVBQ0xDLFFBQ0YsQ0FBQztFQUNILENBQUM7RUFFRCxJQUFNRyxHQUFpRCxHQUFHO0lBQ3hELElBQUlOLE9BQU9BLENBQUEsRUFBRztNQUNaLE9BQU9BLE9BQU87SUFDaEIsQ0FBQztJQUNELElBQUlBLE9BQU9BLENBQUNPLEtBQStDLEVBQUU7TUFDM0RQLE9BQU8sR0FBR08sS0FBSztNQUVmLElBQUlBLEtBQUssSUFBSSxJQUFJLEVBQUU7UUFDakJYLE1BQU0sQ0FBQ1ksT0FBTyxDQUFDVCxTQUFTLENBQUMsQ0FBQ1UsT0FBTyxDQUFDLENBQUMsQ0FBQ1AsS0FBSyxFQUFFUSxTQUFTLENBQUMsS0FBSztVQUN4REEsU0FBUyxDQUFDRCxPQUFPLENBQUVOLFFBQVEsSUFBSztZQUM5QkksS0FBSyxDQUFDSSxXQUFXLENBQ2ZULEtBQUssRUFDTEMsUUFDRixDQUFDO1VBQ0gsQ0FBQyxDQUFDO1FBQ0osQ0FBQyxDQUFDO01BQ0o7SUFDRixDQUFDO0lBQ0RTLE9BQU8sRUFBRUEsQ0FBQSxLQUFNO01BQ2IsSUFBSVosT0FBTyxJQUFJLElBQUksRUFBRTtRQUNuQixPQUFPLEtBQUs7TUFDZDtNQUVBLE9BQU9BLE9BQU8sQ0FBQ1ksT0FBTyxDQUFDLENBQUM7SUFDMUIsQ0FBQztJQUNELEdBQUdqQixPQUFPLENBQUNrQixNQUFNLENBQU0sQ0FBQ0MsR0FBRyxFQUFFQyxJQUFJLEtBQUs7TUFDcENELEdBQUcsQ0FBQ0MsSUFBSSxDQUFDLEdBQUcsQ0FBQyxHQUFHQyxJQUFXLEtBQUs7UUFDOUIsSUFBSUQsSUFBSSxLQUFLLGdCQUFnQixFQUFFO1VBQzdCLElBQU9iLEtBQUssR0FBY2MsSUFBSTtZQUFoQmIsUUFBUSxHQUFJYSxJQUFJO1VBRTlCZixjQUFjLENBQUNDLEtBQUssRUFBRUMsUUFBUSxDQUFDO1FBQ2pDLENBQUMsTUFBTSxJQUFJSCxPQUFPLElBQUksSUFBSSxFQUFFO1VBQzFCLFFBQVFlLElBQUk7WUFDVixLQUFLLGFBQWE7Y0FBRTtnQkFDbEIsSUFBT2IsTUFBSyxHQUFjYyxJQUFJO2tCQUFoQmIsU0FBUSxHQUFJYSxJQUFJO2dCQUU5QmpCLFNBQVMsQ0FBQ0csTUFBSyxDQUFDLEdBQUdILFNBQVMsQ0FBQ0csTUFBSyxDQUFDLElBQUksRUFBRTtnQkFDekNILFNBQVMsQ0FBQ0csTUFBSyxDQUFDLENBQUNlLElBQUksQ0FBQ2QsU0FBUSxDQUFDO2dCQUUvQixPQUFPLE1BQU1GLGNBQWMsQ0FBQ0MsTUFBSyxFQUFFQyxTQUFRLENBQUM7Y0FDOUM7WUFDQTtjQUNFZSxPQUFPLENBQUNDLEtBQUssQ0FBQzNCLHFCQUFxQixDQUFDO1VBQ3hDO1FBQ0YsQ0FBQyxNQUFNO1VBRUwsT0FBT1EsT0FBTyxDQUFDZSxJQUFJLENBQUMsQ0FBQyxHQUFHQyxJQUFJLENBQUM7UUFDL0I7TUFDRixDQUFDO01BQ0QsT0FBT0YsR0FBRztJQUNaLENBQUMsRUFBRSxDQUFDLENBQUM7RUFDUCxDQUFDO0VBRUQsT0FBT1IsR0FBRztBQUNaIiwiaWdub3JlTGlzdCI6W119

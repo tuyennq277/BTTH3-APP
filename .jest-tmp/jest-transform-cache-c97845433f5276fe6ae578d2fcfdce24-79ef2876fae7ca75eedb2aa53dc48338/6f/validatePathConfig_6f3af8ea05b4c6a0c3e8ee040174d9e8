@@ -1,0 +1,56 @@
+be6c512bf0c38b24e94a0874cd7e963c
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.validatePathConfig = validatePathConfig;
+var formatToList = items => Object.entries(items).map(([key, value]) => `- ${key} (${value})`).join('\n');
+function validatePathConfig(config, root = true) {
+  var validation = {
+    path: 'string',
+    initialRouteName: 'string',
+    screens: 'object',
+    ...(root ? null : {
+      alias: 'array',
+      exact: 'boolean',
+      stringify: 'object',
+      parse: 'object'
+    })
+  };
+  if (typeof config !== 'object' || config === null) {
+    throw new Error(`Expected the configuration to be an object, but got ${JSON.stringify(config)}.`);
+  }
+  var validationErrors = Object.fromEntries(Object.keys(config).map(key => {
+    if (key in validation) {
+      var type = validation[key];
+      var value = config[key];
+      if (value !== undefined) {
+        if (type === 'array') {
+          if (!Array.isArray(value)) {
+            return [key, `expected 'Array', got '${typeof value}'`];
+          }
+        } else if (typeof value !== type) {
+          return [key, `expected '${type}', got '${typeof value}'`];
+        }
+      }
+    } else {
+      return [key, 'extraneous'];
+    }
+    return null;
+  }).filter(Boolean));
+  if (Object.keys(validationErrors).length) {
+    throw new Error(`Found invalid properties in the configuration:\n${formatToList(validationErrors)}\n\nYou can only specify the following properties:\n${formatToList(validation)}\n\nIf you want to specify configuration for screens, you need to specify them under a 'screens' property.\n\nSee https://reactnavigation.org/docs/configuring-links for more details on how to specify a linking configuration.`);
+  }
+  if (root && 'path' in config && typeof config.path === 'string' && config.path.includes(':')) {
+    throw new Error(`Found invalid path '${config.path}'. The 'path' in the top-level configuration cannot contain patterns for params.`);
+  }
+  if ('screens' in config && config.screens) {
+    Object.entries(config.screens).forEach(([_, value]) => {
+      if (typeof value !== 'string') {
+        validatePathConfig(value, false);
+      }
+    });
+  }
+}
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJmb3JtYXRUb0xpc3QiLCJpdGVtcyIsIk9iamVjdCIsImVudHJpZXMiLCJtYXAiLCJrZXkiLCJ2YWx1ZSIsImpvaW4iLCJ2YWxpZGF0ZVBhdGhDb25maWciLCJjb25maWciLCJyb290IiwidmFsaWRhdGlvbiIsInBhdGgiLCJpbml0aWFsUm91dGVOYW1lIiwic2NyZWVucyIsImFsaWFzIiwiZXhhY3QiLCJzdHJpbmdpZnkiLCJwYXJzZSIsIkVycm9yIiwiSlNPTiIsInZhbGlkYXRpb25FcnJvcnMiLCJmcm9tRW50cmllcyIsImtleXMiLCJ0eXBlIiwidW5kZWZpbmVkIiwiQXJyYXkiLCJpc0FycmF5IiwiZmlsdGVyIiwiQm9vbGVhbiIsImxlbmd0aCIsImluY2x1ZGVzIiwiZm9yRWFjaCIsIl8iXSwic291cmNlcyI6WyIuLi8uLi9zcmMvdmFsaWRhdGVQYXRoQ29uZmlnLnRzeCJdLCJzb3VyY2VzQ29udGVudCI6W251bGxdLCJtYXBwaW5ncyI6Ijs7Ozs7O0FBQUEsSUFBTUEsWUFBWSxHQUFJQyxLQUE2QixJQUNqREMsTUFBTSxDQUFDQyxPQUFPLENBQUNGLEtBQUssQ0FBQyxDQUNsQkcsR0FBRyxDQUFDLENBQUMsQ0FBQ0MsR0FBRyxFQUFFQyxLQUFLLENBQUMsS0FBSyxLQUFLRCxHQUFHLEtBQUtDLEtBQUssR0FBRyxDQUFDLENBQzVDQyxJQUFJLENBQUMsSUFBSSxDQUFDO0FBRVIsU0FBU0Msa0JBQWtCQSxDQUFDQyxNQUFlLEVBQUVDLElBQUksR0FBRyxJQUFJLEVBQUU7RUFDL0QsSUFBTUMsVUFBVSxHQUFHO0lBQ2pCQyxJQUFJLEVBQUUsUUFBUTtJQUNkQyxnQkFBZ0IsRUFBRSxRQUFRO0lBQzFCQyxPQUFPLEVBQUUsUUFBUTtJQUNqQixJQUFJSixJQUFJLEdBQ0osSUFBSSxHQUNKO01BQ0VLLEtBQUssRUFBRSxPQUFPO01BQ2RDLEtBQUssRUFBRSxTQUFTO01BQ2hCQyxTQUFTLEVBQUUsUUFBUTtNQUNuQkMsS0FBSyxFQUFFO0lBQ1QsQ0FBQztFQUNQLENBQUM7RUFFRCxJQUFJLE9BQU9ULE1BQU0sS0FBSyxRQUFRLElBQUlBLE1BQU0sS0FBSyxJQUFJLEVBQUU7SUFDakQsTUFBTSxJQUFJVSxLQUFLLENBQ2IsdURBQXVEQyxJQUFJLENBQUNILFNBQVMsQ0FDbkVSLE1BQ0YsQ0FBQyxHQUNILENBQUM7RUFDSDtFQUVBLElBQU1ZLGdCQUFnQixHQUFHbkIsTUFBTSxDQUFDb0IsV0FBVyxDQUN6Q3BCLE1BQU0sQ0FBQ3FCLElBQUksQ0FBQ2QsTUFBTSxDQUFDLENBQ2hCTCxHQUFHLENBQUVDLEdBQUcsSUFBSztJQUNaLElBQUlBLEdBQUcsSUFBSU0sVUFBVSxFQUFFO01BQ3JCLElBQU1hLElBQUksR0FBR2IsVUFBVSxDQUFDTixHQUFHLENBQTRCO01BRXZELElBQU1DLEtBQUssR0FBR0csTUFBTSxDQUFDSixHQUFHLENBQUM7TUFFekIsSUFBSUMsS0FBSyxLQUFLbUIsU0FBUyxFQUFFO1FBQ3ZCLElBQUlELElBQUksS0FBSyxPQUFPLEVBQUU7VUFDcEIsSUFBSSxDQUFDRSxLQUFLLENBQUNDLE9BQU8sQ0FBQ3JCLEtBQUssQ0FBQyxFQUFFO1lBQ3pCLE9BQU8sQ0FBQ0QsR0FBRyxFQUFFLDBCQUEwQixPQUFPQyxLQUFLLEdBQUcsQ0FBQztVQUN6RDtRQUNGLENBQUMsTUFBTSxJQUFJLE9BQU9BLEtBQUssS0FBS2tCLElBQUksRUFBRTtVQUNoQyxPQUFPLENBQUNuQixHQUFHLEVBQUUsYUFBYW1CLElBQUksV0FBVyxPQUFPbEIsS0FBSyxHQUFHLENBQUM7UUFDM0Q7TUFDRjtJQUNGLENBQUMsTUFBTTtNQUNMLE9BQU8sQ0FBQ0QsR0FBRyxFQUFFLFlBQVksQ0FBQztJQUM1QjtJQUVBLE9BQU8sSUFBSTtFQUNiLENBQUMsQ0FBQyxDQUNEdUIsTUFBTSxDQUFDQyxPQUFPLENBQ25CLENBQUM7RUFFRCxJQUFJM0IsTUFBTSxDQUFDcUIsSUFBSSxDQUFDRixnQkFBZ0IsQ0FBQyxDQUFDUyxNQUFNLEVBQUU7SUFDeEMsTUFBTSxJQUFJWCxLQUFLLENBQ2IsbURBQW1EbkIsWUFBWSxDQUM3RHFCLGdCQUNGLENBQUMsdURBQXVEckIsWUFBWSxDQUNsRVcsVUFDRixDQUFDLGtPQUNILENBQUM7RUFDSDtFQUVBLElBQ0VELElBQUksSUFDSixNQUFNLElBQUlELE1BQU0sSUFDaEIsT0FBT0EsTUFBTSxDQUFDRyxJQUFJLEtBQUssUUFBUSxJQUMvQkgsTUFBTSxDQUFDRyxJQUFJLENBQUNtQixRQUFRLENBQUMsR0FBRyxDQUFDLEVBQ3pCO0lBQ0EsTUFBTSxJQUFJWixLQUFLLENBQ2IsdUJBQXVCVixNQUFNLENBQUNHLElBQUksa0ZBQ3BDLENBQUM7RUFDSDtFQUVBLElBQUksU0FBUyxJQUFJSCxNQUFNLElBQUlBLE1BQU0sQ0FBQ0ssT0FBTyxFQUFFO0lBQ3pDWixNQUFNLENBQUNDLE9BQU8sQ0FBQ00sTUFBTSxDQUFDSyxPQUFPLENBQUMsQ0FBQ2tCLE9BQU8sQ0FBQyxDQUFDLENBQUNDLENBQUMsRUFBRTNCLEtBQUssQ0FBQyxLQUFLO01BQ3JELElBQUksT0FBT0EsS0FBSyxLQUFLLFFBQVEsRUFBRTtRQUM3QkUsa0JBQWtCLENBQUNGLEtBQUssRUFBRSxLQUFLLENBQUM7TUFDbEM7SUFDRixDQUFDLENBQUM7RUFDSjtBQUNGIiwiaWdub3JlTGlzdCI6W119

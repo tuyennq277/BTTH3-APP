@@ -1,0 +1,11 @@
+80caa8e16a24ff72895b8164c76f21b8
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getLabel = getLabel;
+function getLabel(options, fallback) {
+  return options.label !== undefined ? options.label : options.title !== undefined ? options.title : fallback;
+}
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJnZXRMYWJlbCIsIm9wdGlvbnMiLCJmYWxsYmFjayIsImxhYmVsIiwidW5kZWZpbmVkIiwidGl0bGUiXSwic291cmNlcyI6WyIuLi8uLi8uLi9zcmMvTGFiZWwvZ2V0TGFiZWwudHN4Il0sInNvdXJjZXNDb250ZW50IjpbbnVsbF0sIm1hcHBpbmdzIjoiOzs7Ozs7QUFBTyxTQUFTQSxRQUFRQSxDQUN0QkMsT0FBMkMsRUFDM0NDLFFBQWdCLEVBQ1I7RUFDUixPQUFPRCxPQUFPLENBQUNFLEtBQUssS0FBS0MsU0FBUyxHQUM5QkgsT0FBTyxDQUFDRSxLQUFLLEdBQ2JGLE9BQU8sQ0FBQ0ksS0FBSyxLQUFLRCxTQUFTLEdBQ3pCSCxPQUFPLENBQUNJLEtBQUssR0FDYkgsUUFBUTtBQUNoQiIsImlnbm9yZUxpc3QiOltdfQ==

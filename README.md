@@ -1,5 +1,7 @@
 # BTTH3-APP
 
+> Bài Thực hành 4 dùng Expo, REST API và chế độ offline nằm trong [StudyManager](StudyManager/README.md). Từ thư mục gốc này, chạy `npm run api` ở một terminal và `npm start` ở terminal khác. Nếu Expo đã chạy trước khi thêm Android SDK vào đường dẫn, nhấn Ctrl+C và chạy lại `npm start` rồi nhấn `a`. Nếu mới tải mã nguồn, chạy `npm install --prefix StudyManager` trước. Dự án React Native CLI của bài 3 vẫn chạy được bằng `npm run legacy:start` và `npm run legacy:android`.
+
 Ứng dụng Quản lý Học tập Sinh viên xây dựng bằng **React Native CLI** (TypeScript).
 
 ## Thông tin sinh viên thực hiện

@@ -1,0 +1,5 @@
+c174c40d96298709b2c19e6ac3f0ea23
+module.exports = {
+      testUri:
+        "../../@react-navigation/elements/lib/module/assets/back-icon.png"
+    };

@@ -1,0 +1,20 @@
+63269c40ee8310d39de18c1eb03b08b1
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.createParamsFromAction = createParamsFromAction;
+function createParamsFromAction({
+  action,
+  routeParamList
+}) {
+  var _action$payload = action.payload,
+    name = _action$payload.name,
+    params = _action$payload.params;
+  return routeParamList[name] !== undefined ? {
+    ...routeParamList[name],
+    ...params
+  } : params;
+}
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJjcmVhdGVQYXJhbXNGcm9tQWN0aW9uIiwiYWN0aW9uIiwicm91dGVQYXJhbUxpc3QiLCJfYWN0aW9uJHBheWxvYWQiLCJwYXlsb2FkIiwibmFtZSIsInBhcmFtcyIsInVuZGVmaW5lZCJdLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy9jcmVhdGVQYXJhbXNGcm9tQWN0aW9uLnRzeCJdLCJzb3VyY2VzQ29udGVudCI6W251bGxdLCJtYXBwaW5ncyI6Ijs7Ozs7O0FBWU8sU0FBU0Esc0JBQXNCQSxDQUFDO0VBQUVDLE1BQU07RUFBRUM7QUFBd0IsQ0FBQyxFQUFFO0VBQzFFLElBQUFDLGVBQUEsR0FBeUJGLE1BQU0sQ0FBQ0csT0FBTztJQUEvQkMsSUFBSSxHQUFBRixlQUFBLENBQUpFLElBQUk7SUFBRUMsTUFBQSxHQUFBSCxlQUFBLENBQUFHLE1BQUE7RUFFZCxPQUFPSixjQUFjLENBQUNHLElBQUksQ0FBQyxLQUFLRSxTQUFTLEdBQ3JDO0lBQ0UsR0FBR0wsY0FBYyxDQUFDRyxJQUFJLENBQUM7SUFDdkIsR0FBR0M7RUFDTCxDQUFDLEdBQ0RBLE1BQU07QUFDWiIsImlnbm9yZUxpc3QiOltdfQ==

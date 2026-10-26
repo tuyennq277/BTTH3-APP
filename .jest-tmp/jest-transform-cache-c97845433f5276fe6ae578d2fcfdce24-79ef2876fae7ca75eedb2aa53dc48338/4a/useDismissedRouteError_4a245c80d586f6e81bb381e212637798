@@ -1,0 +1,29 @@
+60032f8b72db4e25f9225859980dfef7
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.useDismissedRouteError = useDismissedRouteError;
+var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/slicedToArray"));
+var React = _interopRequireWildcard(require("react"));
+var cache;
+function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var r, c, a = Object.defineProperty, n = { __proto__: null, default: e }; if (Object(e) !== e) return n; if (cache || "function" != typeof WeakMap || (cache = new WeakMap()), cache) { if (cache.has(e)) return cache.get(e); cache.set(e, n); } for (c in e) "default" !== c && {}.hasOwnProperty.call(e, c) && ((r = a && Object.getOwnPropertyDescriptor(e, c)) && (r.get || r.set) ? a(n, c, r) : n[c] = e[c]); return n; }
+function useDismissedRouteError(state) {
+  var _React$useState = React.useState(null),
+    _React$useState2 = (0, _slicedToArray2.default)(_React$useState, 2),
+    nextDismissedKey = _React$useState2[0],
+    setNextDismissedKey = _React$useState2[1];
+  var dismissedRouteName = nextDismissedKey ? state.routes.find(route => route.key === nextDismissedKey)?.name : null;
+  React.useEffect(() => {
+    if (dismissedRouteName) {
+      var message = `The screen '${dismissedRouteName}' was removed natively but didn't get removed from JS state. ` + `This can happen if the action was prevented in a 'beforeRemove' listener, which is not fully supported in native-stack.\n\n` + `Consider using a 'usePreventRemove' hook with 'headerBackButtonMenuEnabled: false' to prevent users from natively going back multiple screens.`;
+      console.error(message);
+    }
+  }, [dismissedRouteName]);
+  return {
+    setNextDismissedKey
+  };
+}
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJSZWFjdCIsIl9pbnRlcm9wUmVxdWlyZVdpbGRjYXJkIiwicmVxdWlyZSIsImNhY2hlIiwiZSIsInQiLCJfX2VzTW9kdWxlIiwiciIsImMiLCJhIiwiT2JqZWN0IiwiZGVmaW5lUHJvcGVydHkiLCJuIiwiX19wcm90b19fIiwiZGVmYXVsdCIsIldlYWtNYXAiLCJoYXMiLCJnZXQiLCJzZXQiLCJoYXNPd25Qcm9wZXJ0eSIsImNhbGwiLCJnZXRPd25Qcm9wZXJ0eURlc2NyaXB0b3IiLCJ1c2VEaXNtaXNzZWRSb3V0ZUVycm9yIiwic3RhdGUiLCJfUmVhY3QkdXNlU3RhdGUiLCJ1c2VTdGF0ZSIsIl9SZWFjdCR1c2VTdGF0ZTIiLCJfc2xpY2VkVG9BcnJheTIiLCJuZXh0RGlzbWlzc2VkS2V5Iiwic2V0TmV4dERpc21pc3NlZEtleSIsImRpc21pc3NlZFJvdXRlTmFtZSIsInJvdXRlcyIsImZpbmQiLCJyb3V0ZSIsImtleSIsIm5hbWUiLCJ1c2VFZmZlY3QiLCJtZXNzYWdlIiwiY29uc29sZSIsImVycm9yIl0sInNvdXJjZXMiOlsiLi4vLi4vLi4vc3JjL3V0aWxzL3VzZURpc21pc3NlZFJvdXRlRXJyb3IudHN4Il0sInNvdXJjZXNDb250ZW50IjpbbnVsbF0sIm1hcHBpbmdzIjoiOzs7Ozs7OztBQUlBLElBQUFBLEtBQUEsR0FBQUMsdUJBQUEsQ0FBQUMsT0FBQTtBQUE4QixJQUFBQyxLQUFBO0FBQUEsU0FBQUYsd0JBQUFHLENBQUEsRUFBQUMsQ0FBQSxTQUFBQSxDQUFBLElBQUFELENBQUEsSUFBQUEsQ0FBQSxDQUFBRSxVQUFBLFNBQUFGLENBQUEsTUFBQUcsQ0FBQSxFQUFBQyxDQUFBLEVBQUFDLENBQUEsR0FBQUMsTUFBQSxDQUFBQyxjQUFBLEVBQUFDLENBQUEsS0FBQUMsU0FBQSxRQUFBQyxPQUFBLEVBQUFWLENBQUEsUUFBQU0sTUFBQSxDQUFBTixDQUFBLE1BQUFBLENBQUEsU0FBQVEsQ0FBQSxNQUFBVCxLQUFBLHlCQUFBWSxPQUFBLEtBQUFaLEtBQUEsT0FBQVksT0FBQSxLQUFBWixLQUFBLFFBQUFBLEtBQUEsQ0FBQWEsR0FBQSxDQUFBWixDQUFBLFVBQUFELEtBQUEsQ0FBQWMsR0FBQSxDQUFBYixDQUFBLEdBQUFELEtBQUEsQ0FBQWUsR0FBQSxDQUFBZCxDQUFBLEVBQUFRLENBQUEsVUFBQUosQ0FBQSxJQUFBSixDQUFBLGdCQUFBSSxDQUFBLE9BQUFXLGNBQUEsQ0FBQUMsSUFBQSxDQUFBaEIsQ0FBQSxFQUFBSSxDQUFBLE9BQUFELENBQUEsR0FBQUUsQ0FBQSxJQUFBQyxNQUFBLENBQUFXLHdCQUFBLENBQUFqQixDQUFBLEVBQUFJLENBQUEsT0FBQUQsQ0FBQSxDQUFBVSxHQUFBLElBQUFWLENBQUEsQ0FBQVcsR0FBQSxJQUFBVCxDQUFBLENBQUFHLENBQUEsRUFBQUosQ0FBQSxFQUFBRCxDQUFBLElBQUFLLENBQUEsQ0FBQUosQ0FBQSxJQUFBSixDQUFBLENBQUFJLENBQUEsV0FBQUksQ0FBQTtBQUV2QixTQUFTVSxzQkFBc0JBLENBQ3BDQyxLQUEwQyxFQUMxQztFQUNBLElBQUFDLGVBQUEsR0FBZ0R4QixLQUFLLENBQUN5QixRQUFRLENBQzVELElBQ0YsQ0FBQztJQUFBQyxnQkFBQSxPQUFBQyxlQUFBLENBQUFiLE9BQUEsRUFBQVUsZUFBQTtJQUZNSSxnQkFBZ0IsR0FBQUYsZ0JBQUE7SUFBRUcsbUJBQW1CLEdBQUFILGdCQUFBO0VBSTVDLElBQU1JLGtCQUFrQixHQUFHRixnQkFBZ0IsR0FDdkNMLEtBQUssQ0FBQ1EsTUFBTSxDQUFDQyxJQUFJLENBQUVDLEtBQUssSUFBS0EsS0FBSyxDQUFDQyxHQUFHLEtBQUtOLGdCQUFnQixDQUFDLEVBQUVPLElBQUksR0FDbEUsSUFBSTtFQUVSbkMsS0FBSyxDQUFDb0MsU0FBUyxDQUFDLE1BQU07SUFDcEIsSUFBSU4sa0JBQWtCLEVBQUU7TUFDdEIsSUFBTU8sT0FBTyxHQUNYLGVBQWVQLGtCQUFrQiwrREFBK0QsR0FDaEcsNkhBQTZILEdBQzdILGdKQUFnSjtNQUVsSlEsT0FBTyxDQUFDQyxLQUFLLENBQUNGLE9BQU8sQ0FBQztJQUN4QjtFQUNGLENBQUMsRUFBRSxDQUFDUCxrQkFBa0IsQ0FBQyxDQUFDO0VBRXhCLE9BQU87SUFBRUQ7RUFBb0IsQ0FBQztBQUNoQyIsImlnbm9yZUxpc3QiOltdfQ==

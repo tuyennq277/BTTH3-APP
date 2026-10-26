@@ -1,0 +1,17 @@
+1bb73b12e2b617c60f84f48dd73a0b88
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getModalRouteKeys = void 0;
+var getModalRouteKeys = (routes, descriptors) => routes.reduce((acc, route) => {
+  var _ref = descriptors[route.key]?.options ?? {},
+    presentation = _ref.presentation;
+  if (acc.length && !presentation || presentation === 'modal' || presentation === 'transparentModal' || presentation === 'containedModal' || presentation === 'containedTransparentModal' || presentation === 'fullScreenModal' || presentation === 'formSheet' || presentation === 'pageSheet') {
+    acc.push(route.key);
+  }
+  return acc;
+}, []);
+exports.getModalRouteKeys = getModalRouteKeys;
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJnZXRNb2RhbFJvdXRlS2V5cyIsInJvdXRlcyIsImRlc2NyaXB0b3JzIiwicmVkdWNlIiwiYWNjIiwicm91dGUiLCJfcmVmIiwia2V5Iiwib3B0aW9ucyIsInByZXNlbnRhdGlvbiIsImxlbmd0aCIsInB1c2giLCJleHBvcnRzIl0sInNvdXJjZXMiOlsiLi4vLi4vLi4vc3JjL3V0aWxzL2dldE1vZGFsUm91dGVzS2V5cy50cyJdLCJzb3VyY2VzQ29udGVudCI6W251bGxdLCJtYXBwaW5ncyI6Ijs7Ozs7O0FBSU8sSUFBTUEsaUJBQWlCLEdBQUdBLENBQy9CQyxNQUF1QixFQUN2QkMsV0FBcUMsS0FFckNELE1BQU0sQ0FBQ0UsTUFBTSxDQUFXLENBQUNDLEdBQUcsRUFBRUMsS0FBSyxLQUFLO0VBQ3RDLElBQUFDLElBQUEsR0FBeUJKLFdBQVcsQ0FBQ0csS0FBSyxDQUFDRSxHQUFHLENBQUMsRUFBRUMsT0FBTyxJQUFJLENBQUMsQ0FBQztJQUF0REMsWUFBQSxHQUFBSCxJQUFBLENBQUFHLFlBQUE7RUFFUixJQUNHTCxHQUFHLENBQUNNLE1BQU0sSUFBSSxDQUFDRCxZQUFZLElBQzVCQSxZQUFZLEtBQUssT0FBTyxJQUN4QkEsWUFBWSxLQUFLLGtCQUFrQixJQUNuQ0EsWUFBWSxLQUFLLGdCQUFnQixJQUNqQ0EsWUFBWSxLQUFLLDJCQUEyQixJQUM1Q0EsWUFBWSxLQUFLLGlCQUFpQixJQUNsQ0EsWUFBWSxLQUFLLFdBQVcsSUFDNUJBLFlBQVksS0FBSyxXQUFXLEVBQzVCO0lBQ0FMLEdBQUcsQ0FBQ08sSUFBSSxDQUFDTixLQUFLLENBQUNFLEdBQUcsQ0FBQztFQUNyQjtFQUVBLE9BQU9ILEdBQUc7QUFDWixDQUFDLEVBQUUsRUFBRSxDQUFDO0FBQUFRLE9BQUEsQ0FBQVosaUJBQUEsR0FBQUEsaUJBQUEiLCJpZ25vcmVMaXN0IjpbXX0=

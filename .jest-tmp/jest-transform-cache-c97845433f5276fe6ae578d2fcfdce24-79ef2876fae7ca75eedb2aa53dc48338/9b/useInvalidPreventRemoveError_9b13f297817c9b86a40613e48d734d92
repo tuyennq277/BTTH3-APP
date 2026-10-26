@@ -1,0 +1,26 @@
+84a680850eb02bc8b0ce06b67cafb557
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.useInvalidPreventRemoveError = useInvalidPreventRemoveError;
+var _native = require("@react-navigation/native");
+var React = _interopRequireWildcard(require("react"));
+var cache;
+function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var r, c, a = Object.defineProperty, n = { __proto__: null, default: e }; if (Object(e) !== e) return n; if (cache || "function" != typeof WeakMap || (cache = new WeakMap()), cache) { if (cache.has(e)) return cache.get(e); cache.set(e, n); } for (c in e) "default" !== c && {}.hasOwnProperty.call(e, c) && ((r = a && Object.getOwnPropertyDescriptor(e, c)) && (r.get || r.set) ? a(n, c, r) : n[c] = e[c]); return n; }
+function useInvalidPreventRemoveError(descriptors) {
+  var _usePreventRemoveCont = (0, _native.usePreventRemoveContext)(),
+    preventedRoutes = _usePreventRemoveCont.preventedRoutes;
+  var preventedRouteKey = Object.keys(preventedRoutes)[0];
+  var preventedDescriptor = descriptors[preventedRouteKey];
+  var isHeaderBackButtonMenuEnabledOnPreventedScreen = preventedDescriptor?.options?.headerBackButtonMenuEnabled;
+  var preventedRouteName = preventedDescriptor?.route?.name;
+  React.useEffect(() => {
+    if (preventedRouteKey != null && isHeaderBackButtonMenuEnabledOnPreventedScreen) {
+      var message = `The screen ${preventedRouteName} uses 'usePreventRemove' hook alongside 'headerBackButtonMenuEnabled: true', which is not supported. \n\n` + `Consider removing 'headerBackButtonMenuEnabled: true' from ${preventedRouteName} screen to get rid of this error.`;
+      console.error(message);
+    }
+  }, [preventedRouteKey, isHeaderBackButtonMenuEnabledOnPreventedScreen, preventedRouteName]);
+}
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJfbmF0aXZlIiwicmVxdWlyZSIsIlJlYWN0IiwiX2ludGVyb3BSZXF1aXJlV2lsZGNhcmQiLCJjYWNoZSIsImUiLCJ0IiwiX19lc01vZHVsZSIsInIiLCJjIiwiYSIsIk9iamVjdCIsImRlZmluZVByb3BlcnR5IiwibiIsIl9fcHJvdG9fXyIsImRlZmF1bHQiLCJXZWFrTWFwIiwiaGFzIiwiZ2V0Iiwic2V0IiwiaGFzT3duUHJvcGVydHkiLCJjYWxsIiwiZ2V0T3duUHJvcGVydHlEZXNjcmlwdG9yIiwidXNlSW52YWxpZFByZXZlbnRSZW1vdmVFcnJvciIsImRlc2NyaXB0b3JzIiwiX3VzZVByZXZlbnRSZW1vdmVDb250IiwidXNlUHJldmVudFJlbW92ZUNvbnRleHQiLCJwcmV2ZW50ZWRSb3V0ZXMiLCJwcmV2ZW50ZWRSb3V0ZUtleSIsImtleXMiLCJwcmV2ZW50ZWREZXNjcmlwdG9yIiwiaXNIZWFkZXJCYWNrQnV0dG9uTWVudUVuYWJsZWRPblByZXZlbnRlZFNjcmVlbiIsIm9wdGlvbnMiLCJoZWFkZXJCYWNrQnV0dG9uTWVudUVuYWJsZWQiLCJwcmV2ZW50ZWRSb3V0ZU5hbWUiLCJyb3V0ZSIsIm5hbWUiLCJ1c2VFZmZlY3QiLCJtZXNzYWdlIiwiY29uc29sZSIsImVycm9yIl0sInNvdXJjZXMiOlsiLi4vLi4vLi4vc3JjL3V0aWxzL3VzZUludmFsaWRQcmV2ZW50UmVtb3ZlRXJyb3IudHN4Il0sInNvdXJjZXNDb250ZW50IjpbbnVsbF0sIm1hcHBpbmdzIjoiOzs7Ozs7QUFBQSxJQUFBQSxPQUFBLEdBQUFDLE9BQUE7QUFDQSxJQUFBQyxLQUFBLEdBQUFDLHVCQUFBLENBQUFGLE9BQUE7QUFBOEIsSUFBQUcsS0FBQTtBQUFBLFNBQUFELHdCQUFBRSxDQUFBLEVBQUFDLENBQUEsU0FBQUEsQ0FBQSxJQUFBRCxDQUFBLElBQUFBLENBQUEsQ0FBQUUsVUFBQSxTQUFBRixDQUFBLE1BQUFHLENBQUEsRUFBQUMsQ0FBQSxFQUFBQyxDQUFBLEdBQUFDLE1BQUEsQ0FBQUMsY0FBQSxFQUFBQyxDQUFBLEtBQUFDLFNBQUEsUUFBQUMsT0FBQSxFQUFBVixDQUFBLFFBQUFNLE1BQUEsQ0FBQU4sQ0FBQSxNQUFBQSxDQUFBLFNBQUFRLENBQUEsTUFBQVQsS0FBQSx5QkFBQVksT0FBQSxLQUFBWixLQUFBLE9BQUFZLE9BQUEsS0FBQVosS0FBQSxRQUFBQSxLQUFBLENBQUFhLEdBQUEsQ0FBQVosQ0FBQSxVQUFBRCxLQUFBLENBQUFjLEdBQUEsQ0FBQWIsQ0FBQSxHQUFBRCxLQUFBLENBQUFlLEdBQUEsQ0FBQWQsQ0FBQSxFQUFBUSxDQUFBLFVBQUFKLENBQUEsSUFBQUosQ0FBQSxnQkFBQUksQ0FBQSxPQUFBVyxjQUFBLENBQUFDLElBQUEsQ0FBQWhCLENBQUEsRUFBQUksQ0FBQSxPQUFBRCxDQUFBLEdBQUFFLENBQUEsSUFBQUMsTUFBQSxDQUFBVyx3QkFBQSxDQUFBakIsQ0FBQSxFQUFBSSxDQUFBLE9BQUFELENBQUEsQ0FBQVUsR0FBQSxJQUFBVixDQUFBLENBQUFXLEdBQUEsSUFBQVQsQ0FBQSxDQUFBRyxDQUFBLEVBQUFKLENBQUEsRUFBQUQsQ0FBQSxJQUFBSyxDQUFBLENBQUFKLENBQUEsSUFBQUosQ0FBQSxDQUFBSSxDQUFBLFdBQUFJLENBQUE7QUFJdkIsU0FBU1UsNEJBQTRCQSxDQUMxQ0MsV0FBcUMsRUFDckM7RUFDQSxJQUFBQyxxQkFBQSxHQUE0QixJQUFBQywrQkFBdUIsRUFBQyxDQUFDO0lBQTdDQyxlQUFBLEdBQUFGLHFCQUFBLENBQUFFLGVBQUE7RUFDUixJQUFNQyxpQkFBaUIsR0FBR2pCLE1BQU0sQ0FBQ2tCLElBQUksQ0FBQ0YsZUFBZSxDQUFDLENBQUMsQ0FBQyxDQUFDO0VBQ3pELElBQU1HLG1CQUFtQixHQUFHTixXQUFXLENBQUNJLGlCQUFpQixDQUFDO0VBQzFELElBQU1HLDhDQUE4QyxHQUNsREQsbUJBQW1CLEVBQUVFLE9BQU8sRUFBRUMsMkJBQTJCO0VBQzNELElBQU1DLGtCQUFrQixHQUFHSixtQkFBbUIsRUFBRUssS0FBSyxFQUFFQyxJQUFJO0VBRTNEbEMsS0FBSyxDQUFDbUMsU0FBUyxDQUFDLE1BQU07SUFDcEIsSUFDRVQsaUJBQWlCLElBQUksSUFBSSxJQUN6QkcsOENBQThDLEVBQzlDO01BQ0EsSUFBTU8sT0FBTyxHQUNYLGNBQWNKLGtCQUFrQiwyR0FBMkcsR0FDM0ksOERBQThEQSxrQkFBa0IsbUNBQW1DO01BQ3JISyxPQUFPLENBQUNDLEtBQUssQ0FBQ0YsT0FBTyxDQUFDO0lBQ3hCO0VBQ0YsQ0FBQyxFQUFFLENBQ0RWLGlCQUFpQixFQUNqQkcsOENBQThDLEVBQzlDRyxrQkFBa0IsQ0FDbkIsQ0FBQztBQUNKIiwiaWdub3JlTGlzdCI6W119

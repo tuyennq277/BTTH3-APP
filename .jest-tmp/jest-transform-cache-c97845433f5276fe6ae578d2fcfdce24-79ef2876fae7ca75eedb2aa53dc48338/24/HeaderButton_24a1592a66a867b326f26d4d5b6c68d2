@@ -1,0 +1,67 @@
+74bebe80f8e5e126a1c87530bc53a3df
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.HeaderButton = void 0;
+var React = _interopRequireWildcard(require("react"));
+var _reactNative = require("react-native");
+var _PlatformPressable = require("../PlatformPressable.js");
+var _jsxRuntime = require("react/jsx-runtime");
+var cache;
+function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var r, c, a = Object.defineProperty, n = { __proto__: null, default: e }; if (Object(e) !== e) return n; if (cache || "function" != typeof WeakMap || (cache = new WeakMap()), cache) { if (cache.has(e)) return cache.get(e); cache.set(e, n); } for (c in e) "default" !== c && {}.hasOwnProperty.call(e, c) && ((r = a && Object.getOwnPropertyDescriptor(e, c)) && (r.get || r.set) ? a(n, c, r) : n[c] = e[c]); return n; }
+function HeaderButtonInternal({
+  disabled,
+  onPress,
+  pressColor,
+  pressOpacity,
+  accessibilityLabel,
+  testID,
+  style,
+  href,
+  children
+}, ref) {
+  return (0, _jsxRuntime.jsx)(_PlatformPressable.PlatformPressable, {
+    ref: ref,
+    disabled: disabled,
+    href: href,
+    "aria-label": accessibilityLabel,
+    testID: testID,
+    onPress: onPress,
+    pressColor: pressColor,
+    pressOpacity: pressOpacity,
+    android_ripple: androidRipple,
+    style: [styles.container, disabled && styles.disabled, style],
+    hitSlop: _reactNative.Platform.select({
+      ios: undefined,
+      default: {
+        top: 16,
+        right: 16,
+        bottom: 16,
+        left: 16
+      }
+    }),
+    children: children
+  });
+}
+var HeaderButton = exports.HeaderButton = React.forwardRef(HeaderButtonInternal);
+HeaderButton.displayName = 'HeaderButton';
+var androidRipple = {
+  borderless: true,
+  foreground: _reactNative.Platform.OS === 'android' && _reactNative.Platform.Version >= 23,
+  radius: 20
+};
+var styles = _reactNative.StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 8,
+    borderRadius: 10,
+    borderCurve: 'continuous'
+  },
+  disabled: {
+    opacity: 0.5
+  }
+});
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJSZWFjdCIsIl9pbnRlcm9wUmVxdWlyZVdpbGRjYXJkIiwicmVxdWlyZSIsIl9yZWFjdE5hdGl2ZSIsIl9QbGF0Zm9ybVByZXNzYWJsZSIsIl9qc3hSdW50aW1lIiwiY2FjaGUiLCJlIiwidCIsIl9fZXNNb2R1bGUiLCJyIiwiYyIsImEiLCJPYmplY3QiLCJkZWZpbmVQcm9wZXJ0eSIsIm4iLCJfX3Byb3RvX18iLCJkZWZhdWx0IiwiV2Vha01hcCIsImhhcyIsImdldCIsInNldCIsImhhc093blByb3BlcnR5IiwiY2FsbCIsImdldE93blByb3BlcnR5RGVzY3JpcHRvciIsIkhlYWRlckJ1dHRvbkludGVybmFsIiwiZGlzYWJsZWQiLCJvblByZXNzIiwicHJlc3NDb2xvciIsInByZXNzT3BhY2l0eSIsImFjY2Vzc2liaWxpdHlMYWJlbCIsInRlc3RJRCIsInN0eWxlIiwiaHJlZiIsImNoaWxkcmVuIiwicmVmIiwiX2pzeCIsIlBsYXRmb3JtUHJlc3NhYmxlIiwiYW5kcm9pZF9yaXBwbGUiLCJhbmRyb2lkUmlwcGxlIiwic3R5bGVzIiwiY29udGFpbmVyIiwiaGl0U2xvcCIsIlBsYXRmb3JtIiwic2VsZWN0IiwiaW9zIiwidW5kZWZpbmVkIiwidG9wIiwicmlnaHQiLCJib3R0b20iLCJsZWZ0IiwiSGVhZGVyQnV0dG9uIiwiZXhwb3J0cyIsImZvcndhcmRSZWYiLCJkaXNwbGF5TmFtZSIsImJvcmRlcmxlc3MiLCJmb3JlZ3JvdW5kIiwiT1MiLCJWZXJzaW9uIiwicmFkaXVzIiwiU3R5bGVTaGVldCIsImNyZWF0ZSIsImZsZXhEaXJlY3Rpb24iLCJhbGlnbkl0ZW1zIiwicGFkZGluZ0hvcml6b250YWwiLCJib3JkZXJSYWRpdXMiLCJib3JkZXJDdXJ2ZSIsIm9wYWNpdHkiXSwic291cmNlcyI6WyIuLi8uLi8uLi9zcmMvSGVhZGVyL0hlYWRlckJ1dHRvbi50c3giXSwic291cmNlc0NvbnRlbnQiOltudWxsXSwibWFwcGluZ3MiOiI7Ozs7OztBQUFBLElBQUFBLEtBQUEsR0FBQUMsdUJBQUEsQ0FBQUMsT0FBQTtBQUNBLElBQUFDLFlBQUEsR0FBQUQsT0FBQTtBQUVBLElBQUFFLGtCQUFBLEdBQUFGLE9BQUE7QUFBeUQsSUFBQUcsV0FBQSxHQUFBSCxPQUFBO0FBQUEsSUFBQUksS0FBQTtBQUFBLFNBQUFMLHdCQUFBTSxDQUFBLEVBQUFDLENBQUEsU0FBQUEsQ0FBQSxJQUFBRCxDQUFBLElBQUFBLENBQUEsQ0FBQUUsVUFBQSxTQUFBRixDQUFBLE1BQUFHLENBQUEsRUFBQUMsQ0FBQSxFQUFBQyxDQUFBLEdBQUFDLE1BQUEsQ0FBQUMsY0FBQSxFQUFBQyxDQUFBLEtBQUFDLFNBQUEsUUFBQUMsT0FBQSxFQUFBVixDQUFBLFFBQUFNLE1BQUEsQ0FBQU4sQ0FBQSxNQUFBQSxDQUFBLFNBQUFRLENBQUEsTUFBQVQsS0FBQSx5QkFBQVksT0FBQSxLQUFBWixLQUFBLE9BQUFZLE9BQUEsS0FBQVosS0FBQSxRQUFBQSxLQUFBLENBQUFhLEdBQUEsQ0FBQVosQ0FBQSxVQUFBRCxLQUFBLENBQUFjLEdBQUEsQ0FBQWIsQ0FBQSxHQUFBRCxLQUFBLENBQUFlLEdBQUEsQ0FBQWQsQ0FBQSxFQUFBUSxDQUFBLFVBQUFKLENBQUEsSUFBQUosQ0FBQSxnQkFBQUksQ0FBQSxPQUFBVyxjQUFBLENBQUFDLElBQUEsQ0FBQWhCLENBQUEsRUFBQUksQ0FBQSxPQUFBRCxDQUFBLEdBQUFFLENBQUEsSUFBQUMsTUFBQSxDQUFBVyx3QkFBQSxDQUFBakIsQ0FBQSxFQUFBSSxDQUFBLE9BQUFELENBQUEsQ0FBQVUsR0FBQSxJQUFBVixDQUFBLENBQUFXLEdBQUEsSUFBQVQsQ0FBQSxDQUFBRyxDQUFBLEVBQUFKLENBQUEsRUFBQUQsQ0FBQSxJQUFBSyxDQUFBLENBQUFKLENBQUEsSUFBQUosQ0FBQSxDQUFBSSxDQUFBLFdBQUFJLENBQUE7QUFHekQsU0FBU1Usb0JBQW9CQSxDQUMzQjtFQUNFQyxRQUFRO0VBQ1JDLE9BQU87RUFDUEMsVUFBVTtFQUNWQyxZQUFZO0VBQ1pDLGtCQUFrQjtFQUNsQkMsTUFBTTtFQUNOQyxLQUFLO0VBQ0xDLElBQUk7RUFDSkM7QUFDaUIsQ0FBQyxFQUNwQkMsR0FBNEQsRUFDNUQ7RUFDQSxPQUNFLElBQUFDLGVBQUEsRUFBQ0Msb0NBQWlCO0lBQ2hCRixHQUFHLEVBQUVBLEdBQUk7SUFDVFQsUUFBUSxFQUFFQSxRQUFTO0lBQ25CTyxJQUFJLEVBQUVBLElBQUs7SUFDWCxjQUFZSCxrQkFBbUI7SUFDL0JDLE1BQU0sRUFBRUEsTUFBTztJQUNmSixPQUFPLEVBQUVBLE9BQVE7SUFDakJDLFVBQVUsRUFBRUEsVUFBVztJQUN2QkMsWUFBWSxFQUFFQSxZQUFhO0lBQzNCUyxjQUFjLEVBQUVDLGFBQWM7SUFDOUJQLEtBQUssRUFBRSxDQUFDUSxNQUFNLENBQUNDLFNBQVMsRUFBRWYsUUFBUSxJQUFJYyxNQUFNLENBQUNkLFFBQVEsRUFBRU0sS0FBSyxDQUFFO0lBQzlEVSxPQUFPLEVBQUVDLHFCQUFRLENBQUNDLE1BQU0sQ0FBQztNQUN2QkMsR0FBRyxFQUFFQyxTQUFTO01BQ2Q3QixPQUFPLEVBQUU7UUFBRThCLEdBQUcsRUFBRSxFQUFFO1FBQUVDLEtBQUssRUFBRSxFQUFFO1FBQUVDLE1BQU0sRUFBRSxFQUFFO1FBQUVDLElBQUksRUFBRTtNQUFHO0lBQ3RELENBQUMsQ0FBRTtJQUFBaEIsUUFBQSxFQUVGQTtFQUFRLENBQ1EsQ0FBQztBQUV4QjtBQUVPLElBQU1pQixZQUFZLEdBQUFDLE9BQUEsQ0FBQUQsWUFBQSxHQUFHbkQsS0FBSyxDQUFDcUQsVUFBVSxDQUFDNUIsb0JBQW9CLENBQUM7QUFFbEUwQixZQUFZLENBQUNHLFdBQVcsR0FBRyxjQUFjO0FBRXpDLElBQU1mLGFBQWEsR0FBRztFQUNwQmdCLFVBQVUsRUFBRSxJQUFJO0VBQ2hCQyxVQUFVLEVBQUViLHFCQUFRLENBQUNjLEVBQUUsS0FBSyxTQUFTLElBQUlkLHFCQUFRLENBQUNlLE9BQU8sSUFBSSxFQUFFO0VBQy9EQyxNQUFNLEVBQUU7QUFDVixDQUFDO0FBRUQsSUFBTW5CLE1BQU0sR0FBR29CLHVCQUFVLENBQUNDLE1BQU0sQ0FBQztFQUMvQnBCLFNBQVMsRUFBRTtJQUNUcUIsYUFBYSxFQUFFLEtBQUs7SUFDcEJDLFVBQVUsRUFBRSxRQUFRO0lBQ3BCQyxpQkFBaUIsRUFBRSxDQUFDO0lBRXBCQyxZQUFZLEVBQUUsRUFBRTtJQUNoQkMsV0FBVyxFQUFFO0VBQ2YsQ0FBQztFQUNEeEMsUUFBUSxFQUFFO0lBQ1J5QyxPQUFPLEVBQUU7RUFDWDtBQUNGLENBQUMsQ0FBQyIsImlnbm9yZUxpc3QiOltdfQ==

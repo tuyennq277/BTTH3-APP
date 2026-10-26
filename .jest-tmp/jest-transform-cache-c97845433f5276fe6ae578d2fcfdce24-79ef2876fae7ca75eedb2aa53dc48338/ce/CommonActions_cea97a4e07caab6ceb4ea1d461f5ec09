@@ -1,0 +1,99 @@
+ad34dc680b12fd4463b80c3c2e0e2f89
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.goBack = goBack;
+exports.navigate = navigate;
+exports.navigateDeprecated = navigateDeprecated;
+exports.preload = preload;
+exports.replaceParams = replaceParams;
+exports.reset = reset;
+exports.setParams = setParams;
+function goBack() {
+  return {
+    type: 'GO_BACK'
+  };
+}
+function navigate(...args) {
+  if (typeof args[0] === 'string') {
+    var name = args[0],
+      params = args[1],
+      options = args[2];
+    if (typeof options === 'boolean') {
+      console.warn(`Passing a boolean as the third argument to 'navigate' is deprecated. Pass '{ merge: true }' instead.`);
+    }
+    return {
+      type: 'NAVIGATE',
+      payload: {
+        name,
+        params,
+        merge: typeof options === 'boolean' ? options : options?.merge,
+        pop: options?.pop
+      }
+    };
+  } else {
+    var payload = args[0] || {};
+    if (!('name' in payload)) {
+      throw new Error('You need to specify a name when calling navigate with an object as the argument. See https://reactnavigation.org/docs/navigation-actions#navigate for usage.');
+    }
+    console.warn(`Passing an object as the argument to 'navigate' is deprecated. Use 'navigate(name, params, options)' instead.`);
+    return {
+      type: 'NAVIGATE',
+      payload
+    };
+  }
+}
+function navigateDeprecated(...args) {
+  if (typeof args[0] === 'string') {
+    return {
+      type: 'NAVIGATE_DEPRECATED',
+      payload: {
+        name: args[0],
+        params: args[1]
+      }
+    };
+  } else {
+    var payload = args[0] || {};
+    if (!('name' in payload)) {
+      throw new Error('You need to specify a name when calling navigateDeprecated with an object as the argument. See https://reactnavigation.org/docs/navigation-actions#navigatelegacy for usage.');
+    }
+    return {
+      type: 'NAVIGATE_DEPRECATED',
+      payload
+    };
+  }
+}
+function reset(state) {
+  return {
+    type: 'RESET',
+    payload: state
+  };
+}
+function setParams(params) {
+  return {
+    type: 'SET_PARAMS',
+    payload: {
+      params
+    }
+  };
+}
+function replaceParams(params) {
+  return {
+    type: 'REPLACE_PARAMS',
+    payload: {
+      params
+    }
+  };
+}
+function preload(name, params) {
+  return {
+    type: 'PRELOAD',
+    payload: {
+      name,
+      params
+    }
+  };
+}
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJnb0JhY2siLCJ0eXBlIiwibmF2aWdhdGUiLCJhcmdzIiwibmFtZSIsInBhcmFtcyIsIm9wdGlvbnMiLCJjb25zb2xlIiwid2FybiIsInBheWxvYWQiLCJtZXJnZSIsInBvcCIsIkVycm9yIiwibmF2aWdhdGVEZXByZWNhdGVkIiwicmVzZXQiLCJzdGF0ZSIsInNldFBhcmFtcyIsInJlcGxhY2VQYXJhbXMiLCJwcmVsb2FkIl0sInNvdXJjZXMiOlsiLi4vLi4vc3JjL0NvbW1vbkFjdGlvbnMudHN4Il0sInNvdXJjZXNDb250ZW50IjpbbnVsbF0sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7QUErRU8sU0FBU0EsTUFBTUEsQ0FBQSxFQUFXO0VBQy9CLE9BQU87SUFBRUMsSUFBSSxFQUFFO0VBQVUsQ0FBQztBQUM1QjtBQXNCTyxTQUFTQyxRQUFRQSxDQUFDLEdBQUdDLElBQVMsRUFBVTtFQUM3QyxJQUFJLE9BQU9BLElBQUksQ0FBQyxDQUFDLENBQUMsS0FBSyxRQUFRLEVBQUU7SUFDL0IsSUFBT0MsSUFBSSxHQUFxQkQsSUFBSTtNQUF2QkUsTUFBTSxHQUFhRixJQUFJO01BQWZHLE9BQU8sR0FBSUgsSUFBSTtJQUVwQyxJQUFJLE9BQU9HLE9BQU8sS0FBSyxTQUFTLEVBQUU7TUFDaENDLE9BQU8sQ0FBQ0MsSUFBSSxDQUNWLHNHQUNGLENBQUM7SUFDSDtJQUVBLE9BQU87TUFDTFAsSUFBSSxFQUFFLFVBQVU7TUFDaEJRLE9BQU8sRUFBRTtRQUNQTCxJQUFJO1FBQ0pDLE1BQU07UUFDTkssS0FBSyxFQUFFLE9BQU9KLE9BQU8sS0FBSyxTQUFTLEdBQUdBLE9BQU8sR0FBR0EsT0FBTyxFQUFFSSxLQUFLO1FBQzlEQyxHQUFHLEVBQUVMLE9BQU8sRUFBRUs7TUFDaEI7SUFDRixDQUFDO0VBQ0gsQ0FBQyxNQUFNO0lBQ0wsSUFBTUYsT0FBTyxHQUFHTixJQUFJLENBQUMsQ0FBQyxDQUFDLElBQUksQ0FBQyxDQUFDO0lBRTdCLElBQUksRUFBRSxNQUFNLElBQUlNLE9BQU8sQ0FBQyxFQUFFO01BQ3hCLE1BQU0sSUFBSUcsS0FBSyxDQUNiLDhKQUNGLENBQUM7SUFDSDtJQUVBTCxPQUFPLENBQUNDLElBQUksQ0FDViwrR0FDRixDQUFDO0lBRUQsT0FBTztNQUFFUCxJQUFJLEVBQUUsVUFBVTtNQUFFUTtJQUFRLENBQUM7RUFDdEM7QUFDRjtBQUVPLFNBQVNJLGtCQUFrQkEsQ0FDaEMsR0FBR1YsSUFHNkMsRUFDeEM7RUFDUixJQUFJLE9BQU9BLElBQUksQ0FBQyxDQUFDLENBQUMsS0FBSyxRQUFRLEVBQUU7SUFDL0IsT0FBTztNQUNMRixJQUFJLEVBQUUscUJBQXFCO01BQzNCUSxPQUFPLEVBQUU7UUFBRUwsSUFBSSxFQUFFRCxJQUFJLENBQUMsQ0FBQyxDQUFDO1FBQUVFLE1BQU0sRUFBRUYsSUFBSSxDQUFDLENBQUM7TUFBRTtJQUM1QyxDQUFDO0VBQ0gsQ0FBQyxNQUFNO0lBQ0wsSUFBTU0sT0FBTyxHQUFHTixJQUFJLENBQUMsQ0FBQyxDQUFDLElBQUksQ0FBQyxDQUFDO0lBRTdCLElBQUksRUFBRSxNQUFNLElBQUlNLE9BQU8sQ0FBQyxFQUFFO01BQ3hCLE1BQU0sSUFBSUcsS0FBSyxDQUNiLDhLQUNGLENBQUM7SUFDSDtJQUVBLE9BQU87TUFBRVgsSUFBSSxFQUFFLHFCQUFxQjtNQUFFUTtJQUFRLENBQUM7RUFDakQ7QUFDRjtBQUVPLFNBQVNLLEtBQUtBLENBQUNDLEtBQTZCLEVBQUU7RUFDbkQsT0FBTztJQUFFZCxJQUFJLEVBQUUsT0FBTztJQUFFUSxPQUFPLEVBQUVNO0VBQU0sQ0FBQztBQUMxQztBQUVPLFNBQVNDLFNBQVNBLENBQUNYLE1BQWMsRUFBRTtFQUN4QyxPQUFPO0lBQ0xKLElBQUksRUFBRSxZQUFZO0lBQ2xCUSxPQUFPLEVBQUU7TUFBRUo7SUFBTztFQUNwQixDQUFDO0FBQ0g7QUFFTyxTQUFTWSxhQUFhQSxDQUFDWixNQUFjLEVBQUU7RUFDNUMsT0FBTztJQUNMSixJQUFJLEVBQUUsZ0JBQWdCO0lBQ3RCUSxPQUFPLEVBQUU7TUFBRUo7SUFBTztFQUNwQixDQUFDO0FBQ0g7QUFFTyxTQUFTYSxPQUFPQSxDQUFDZCxJQUFZLEVBQUVDLE1BQWUsRUFBRTtFQUNyRCxPQUFPO0lBQ0xKLElBQUksRUFBRSxTQUFTO0lBQ2ZRLE9BQU8sRUFBRTtNQUFFTCxJQUFJO01BQUVDO0lBQU87RUFDMUIsQ0FBQztBQUNIIiwiaWdub3JlTGlzdCI6W119

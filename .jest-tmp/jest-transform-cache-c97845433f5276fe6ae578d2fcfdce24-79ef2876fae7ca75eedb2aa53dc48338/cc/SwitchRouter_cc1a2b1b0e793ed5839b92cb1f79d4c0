@@ -1,0 +1,370 @@
+b957c90069cc04c51b04f9bd6ce664a5
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.SwitchRouter = SwitchRouter;
+var _nonSecure = require("nanoid/non-secure");
+var _BaseRouter = require("./BaseRouter.js");
+var _createParamsFromAction = require("./createParamsFromAction.js");
+var TYPE_ROUTE = 'route';
+var getRouteHistory = (routes, index, backBehavior, initialRouteName) => {
+  var history = [{
+    type: TYPE_ROUTE,
+    key: routes[index].key,
+    params: backBehavior === 'fullHistory' ? routes[index].params : undefined
+  }];
+  var initialRouteIndex;
+  switch (backBehavior) {
+    case 'order':
+      for (var i = index; i > 0; i--) {
+        history.unshift({
+          type: TYPE_ROUTE,
+          key: routes[i - 1].key
+        });
+      }
+      break;
+    case 'firstRoute':
+      if (index !== 0) {
+        history.unshift({
+          type: TYPE_ROUTE,
+          key: routes[0].key
+        });
+      }
+      break;
+    case 'initialRoute':
+      initialRouteIndex = routes.findIndex(route => route.name === initialRouteName);
+      initialRouteIndex = initialRouteIndex === -1 ? 0 : initialRouteIndex;
+      if (index !== initialRouteIndex) {
+        history.unshift({
+          type: TYPE_ROUTE,
+          key: routes[initialRouteIndex].key
+        });
+      }
+      break;
+    case 'history':
+    case 'fullHistory':
+      break;
+  }
+  return history;
+};
+var changeIndex = (state, index, backBehavior, initialRouteName) => {
+  var history = state.history;
+  if (backBehavior === 'history' || backBehavior === 'fullHistory') {
+    var currentRoute = state.routes[index];
+    if (backBehavior === 'history') {
+      history = history.filter(it => it.type === 'route' ? it.key !== currentRoute.key : true);
+    } else if (backBehavior === 'fullHistory') {
+      var lastHistoryRouteItemIndex = history.findLastIndex(item => item.type === 'route');
+      var lastHistoryRouteItem = history[lastHistoryRouteItemIndex];
+      if (lastHistoryRouteItem?.type === 'route' && currentRoute.key === lastHistoryRouteItem.key) {
+        history = [...history.slice(0, lastHistoryRouteItemIndex), ...history.slice(lastHistoryRouteItemIndex + 1)];
+      }
+    }
+    history = history.concat({
+      type: TYPE_ROUTE,
+      key: currentRoute.key,
+      params: backBehavior === 'fullHistory' ? currentRoute.params : undefined
+    });
+  } else {
+    history = [...state.history.filter(it => it.type !== 'route'), ...getRouteHistory(state.routes, index, backBehavior, initialRouteName)];
+  }
+  return {
+    index,
+    history
+  };
+};
+function SwitchRouter({
+  initialRouteName,
+  backBehavior = 'firstRoute'
+}) {
+  var router = {
+    ..._BaseRouter.BaseRouter,
+    getInitialState({
+      routeNames,
+      routeParamList
+    }) {
+      var index = initialRouteName !== undefined && routeNames.includes(initialRouteName) ? routeNames.indexOf(initialRouteName) : 0;
+      var routes = routeNames.map(name => ({
+        name,
+        key: `${name}-${(0, _nonSecure.nanoid)()}`,
+        params: routeParamList[name]
+      }));
+      return {
+        stale: false,
+        key: (0, _nonSecure.nanoid)(),
+        index,
+        routeNames,
+        history: getRouteHistory(routes, index, backBehavior, initialRouteName),
+        routes,
+        preloadedRouteKeys: []
+      };
+    },
+    getRehydratedState(state, {
+      routeNames,
+      routeParamList
+    }) {
+      var routes = routeNames.map(name => {
+        var route = state.routes.find(r => r.name === name);
+        return {
+          ...route,
+          name,
+          key: route && route.name === name && route.key ? route.key : `${name}-${(0, _nonSecure.nanoid)()}`,
+          params: routeParamList[name] !== undefined ? {
+            ...routeParamList[name],
+            ...(route ? route.params : undefined)
+          } : route ? route.params : undefined
+        };
+      });
+      var index = Math.min(Math.max(routeNames.indexOf(state.routes[state.index ?? 0]?.name), 0), routes.length - 1);
+      var routeKeys = routes.map(route => route.key);
+      var history = [];
+      for (var item of state.history ?? []) {
+        if (item.type === 'route' && routeKeys.includes(item.key)) {
+          history.push(item);
+        }
+      }
+      var stateData = {
+        stale: false,
+        key: (0, _nonSecure.nanoid)(),
+        index,
+        routeNames,
+        history,
+        routes,
+        preloadedRouteKeys: state.preloadedRouteKeys?.filter(key => routeKeys.includes(key)) ?? []
+      };
+      return {
+        ...stateData,
+        ...changeIndex(stateData, index, backBehavior, initialRouteName)
+      };
+    },
+    getStateForRouteNamesChange(state, {
+      routeNames,
+      routeParamList,
+      routeKeyChanges
+    }) {
+      var routes = routeNames.map(name => state.routes.find(r => r.name === name && !routeKeyChanges.includes(r.name)) ?? {
+        name,
+        key: `${name}-${(0, _nonSecure.nanoid)()}`,
+        params: routeParamList[name]
+      });
+      var routeKeys = new Set(routes.map(route => route.key));
+      var currentRoute = state.routes[state.index];
+      if (currentRoute == null) {
+        throw new Error(`Couldn't find a route at index ${state.index}.`);
+      }
+      var history = state.history.filter(item => item.type !== 'route' || routeKeys.has(item.key));
+      var index = routeNames.indexOf(currentRoute.name);
+      if (index === -1) {
+        var previousRouteItem = history.findLast(item => item.type === 'route');
+        index = Math.max(0, routes.findIndex(route => route.key === previousRouteItem?.key));
+      }
+      return {
+        ...state,
+        routeNames,
+        routes,
+        ...changeIndex({
+          routes,
+          history
+        }, index, backBehavior, initialRouteName),
+        preloadedRouteKeys: state.preloadedRouteKeys.filter(key => routeKeys.has(key))
+      };
+    },
+    getStateForRouteFocus(state, key) {
+      var index = state.routes.findIndex(r => r.key === key);
+      if (index === -1 || index === state.index) {
+        return state;
+      }
+      return {
+        ...state,
+        ...changeIndex(state, index, backBehavior, initialRouteName)
+      };
+    },
+    getStateForAction(state, action, {
+      routeParamList,
+      routeGetIdList
+    }) {
+      switch (action.type) {
+        case 'JUMP_TO':
+        case 'NAVIGATE':
+        case 'NAVIGATE_DEPRECATED':
+          {
+            var index = state.routes.findIndex(route => route.name === action.payload.name);
+            if (index === -1) {
+              return null;
+            }
+            var route = state.routes[index];
+            if (route == null) {
+              throw new Error(`Couldn't find a route at index ${index}.`);
+            }
+            var getId = routeGetIdList[route.name];
+            var currentId = getId?.({
+              params: route.params
+            });
+            var nextId = getId?.({
+              params: action.payload.params
+            });
+            var key = currentId === nextId ? route.key : `${route.name}-${(0, _nonSecure.nanoid)()}`;
+            var params;
+            if ((action.type === 'NAVIGATE' || action.type === 'NAVIGATE_DEPRECATED') && action.payload.merge && currentId === nextId) {
+              params = action.payload.params !== undefined || routeParamList[route.name] !== undefined ? {
+                ...routeParamList[route.name],
+                ...route.params,
+                ...action.payload.params
+              } : route.params;
+            } else {
+              params = (0, _createParamsFromAction.createParamsFromAction)({
+                action,
+                routeParamList
+              });
+            }
+            var path = action.type === 'NAVIGATE' && action.payload.path != null ? action.payload.path : key === route.key ? route.path : undefined;
+            var nextRoute = key !== route.key ? {
+              key,
+              name: route.name,
+              path,
+              params
+            } : params !== route.params || path !== route.path ? {
+              ...route,
+              path,
+              params
+            } : route;
+            var routes = state.routes.map((item, routeIndex) => routeIndex === index ? nextRoute : item);
+            var updatedState = {
+              ...state,
+              routes,
+              history: key === route.key ? state.history : state.history.filter(it => it.type !== 'route' || it.key !== route.key)
+            };
+            return {
+              ...updatedState,
+              ...changeIndex(updatedState, index, backBehavior, initialRouteName),
+              preloadedRouteKeys: updatedState.preloadedRouteKeys.filter(key => key !== route.key && key !== nextRoute.key)
+            };
+          }
+        case 'SET_PARAMS':
+        case 'REPLACE_PARAMS':
+          {
+            var nextState = _BaseRouter.BaseRouter.getStateForAction(state, action);
+            if (nextState !== null) {
+              var _index = nextState.index;
+              if (_index != null) {
+                var _route = action.source ? nextState.routes.find(route => route.key === action.source) : nextState.routes[_index];
+                if (_route === undefined) {
+                  return nextState;
+                }
+                var historyItemIndex = state.history.findLastIndex(item => item.type === 'route' && item.key === _route.key);
+                var updatedHistory = state.history;
+                if (historyItemIndex !== -1) {
+                  updatedHistory = [...state.history];
+                  var item = updatedHistory[historyItemIndex];
+                  if (item.type === 'route') {
+                    updatedHistory[historyItemIndex] = {
+                      ...item,
+                      params: _route.params
+                    };
+                  }
+                }
+                return {
+                  ...nextState,
+                  history: updatedHistory
+                };
+              }
+            }
+            return nextState;
+          }
+        case 'GO_BACK':
+          {
+            if (state.history.length === 1) {
+              return null;
+            }
+            var previousHistoryItem = state.history[state.history.length - 2];
+            if (previousHistoryItem?.type !== 'route') {
+              return null;
+            }
+            var previousKey = previousHistoryItem.key;
+            var _index2 = state.routes.findLastIndex(route => route.key === previousKey);
+            if (_index2 === -1) {
+              return null;
+            }
+            var _routes = state.routes;
+            if (backBehavior === 'fullHistory' && _routes[_index2].params !== previousHistoryItem.params) {
+              _routes = [...state.routes];
+              _routes[_index2] = {
+                ..._routes[_index2],
+                params: previousHistoryItem.params
+              };
+            }
+            return {
+              ...state,
+              routes: _routes,
+              preloadedRouteKeys: state.preloadedRouteKeys.filter(key => key !== state.routes[_index2].key),
+              history: state.history.slice(0, -1),
+              index: _index2
+            };
+          }
+        case 'PRELOAD':
+          {
+            var routeIndex = state.routes.findIndex(route => route.name === action.payload.name);
+            if (routeIndex === -1) {
+              return null;
+            }
+            var _route2 = state.routes[routeIndex];
+            var _getId = routeGetIdList[_route2.name];
+            var _currentId = _getId?.({
+              params: _route2.params
+            });
+            var _nextId = _getId?.({
+              params: action.payload.params
+            });
+            var _key = _currentId === _nextId ? _route2.key : `${_route2.name}-${(0, _nonSecure.nanoid)()}`;
+            var _params = (0, _createParamsFromAction.createParamsFromAction)({
+              action,
+              routeParamList
+            });
+            var newRoute = _key !== _route2.key ? {
+              key: _key,
+              name: _route2.name,
+              params: _params
+            } : _params !== _route2.params ? {
+              ..._route2,
+              params: _params
+            } : _route2;
+            var history = state.history;
+            if (_key !== _route2.key) {
+              history = history.filter(record => record.type !== 'route' || record.key !== _route2.key);
+              if (routeIndex === state.index) {
+                history = history.concat({
+                  type: TYPE_ROUTE,
+                  key: newRoute.key,
+                  params: backBehavior === 'fullHistory' ? newRoute.params : undefined
+                });
+              }
+            } else if (backBehavior === 'fullHistory' && newRoute.params !== _route2.params) {
+              var _historyItemIndex = history.findLastIndex(item => item.type === 'route' && item.key === _route2.key);
+              if (_historyItemIndex !== -1) {
+                history = [...history];
+                var _item = history[_historyItemIndex];
+                if (_item.type === 'route') {
+                  history[_historyItemIndex] = {
+                    ..._item,
+                    params: newRoute.params
+                  };
+                }
+              }
+            }
+            return {
+              ...state,
+              preloadedRouteKeys: state.preloadedRouteKeys.filter(key => key !== _route2.key).concat(newRoute.key),
+              routes: state.routes.map((route, index) => index === routeIndex ? newRoute : route),
+              history
+            };
+          }
+        default:
+          return _BaseRouter.BaseRouter.getStateForAction(state, action);
+      }
+    }
+  };
+  return router;
+}
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJfbm9uU2VjdXJlIiwicmVxdWlyZSIsIl9CYXNlUm91dGVyIiwiX2NyZWF0ZVBhcmFtc0Zyb21BY3Rpb24iLCJUWVBFX1JPVVRFIiwiZ2V0Um91dGVIaXN0b3J5Iiwicm91dGVzIiwiaW5kZXgiLCJiYWNrQmVoYXZpb3IiLCJpbml0aWFsUm91dGVOYW1lIiwiaGlzdG9yeSIsInR5cGUiLCJrZXkiLCJwYXJhbXMiLCJ1bmRlZmluZWQiLCJpbml0aWFsUm91dGVJbmRleCIsImkiLCJ1bnNoaWZ0IiwiZmluZEluZGV4Iiwicm91dGUiLCJuYW1lIiwiY2hhbmdlSW5kZXgiLCJzdGF0ZSIsImN1cnJlbnRSb3V0ZSIsImZpbHRlciIsIml0IiwibGFzdEhpc3RvcnlSb3V0ZUl0ZW1JbmRleCIsImZpbmRMYXN0SW5kZXgiLCJpdGVtIiwibGFzdEhpc3RvcnlSb3V0ZUl0ZW0iLCJzbGljZSIsImNvbmNhdCIsIlN3aXRjaFJvdXRlciIsInJvdXRlciIsIkJhc2VSb3V0ZXIiLCJnZXRJbml0aWFsU3RhdGUiLCJyb3V0ZU5hbWVzIiwicm91dGVQYXJhbUxpc3QiLCJpbmNsdWRlcyIsImluZGV4T2YiLCJtYXAiLCJuYW5vaWQiLCJzdGFsZSIsInByZWxvYWRlZFJvdXRlS2V5cyIsImdldFJlaHlkcmF0ZWRTdGF0ZSIsImZpbmQiLCJyIiwiTWF0aCIsIm1pbiIsIm1heCIsImxlbmd0aCIsInJvdXRlS2V5cyIsInB1c2giLCJzdGF0ZURhdGEiLCJnZXRTdGF0ZUZvclJvdXRlTmFtZXNDaGFuZ2UiLCJyb3V0ZUtleUNoYW5nZXMiLCJTZXQiLCJFcnJvciIsImhhcyIsInByZXZpb3VzUm91dGVJdGVtIiwiZmluZExhc3QiLCJnZXRTdGF0ZUZvclJvdXRlRm9jdXMiLCJnZXRTdGF0ZUZvckFjdGlvbiIsImFjdGlvbiIsInJvdXRlR2V0SWRMaXN0IiwicGF5bG9hZCIsImdldElkIiwiY3VycmVudElkIiwibmV4dElkIiwibWVyZ2UiLCJjcmVhdGVQYXJhbXNGcm9tQWN0aW9uIiwicGF0aCIsIm5leHRSb3V0ZSIsInJvdXRlSW5kZXgiLCJ1cGRhdGVkU3RhdGUiLCJuZXh0U3RhdGUiLCJzb3VyY2UiLCJoaXN0b3J5SXRlbUluZGV4IiwidXBkYXRlZEhpc3RvcnkiLCJwcmV2aW91c0hpc3RvcnlJdGVtIiwicHJldmlvdXNLZXkiLCJuZXdSb3V0ZSIsInJlY29yZCJdLCJzb3VyY2VzIjpbIi4uLy4uL3NyYy9Td2l0Y2hSb3V0ZXIudHN4Il0sInNvdXJjZXNDb250ZW50IjpbbnVsbF0sIm1hcHBpbmdzIjoiOzs7Ozs7QUFBQSxJQUFBQSxVQUFBLEdBQUFDLE9BQUE7QUFFQSxJQUFBQyxXQUFBLEdBQUFELE9BQUE7QUFDQSxJQUFBRSx1QkFBQSxHQUFBRixPQUFBO0FBZ0VBLElBQU1HLFVBQVUsR0FBRyxPQUFnQjtBQUVuQyxJQUFNQyxlQUFlLEdBQUdBLENBQ3RCQyxNQUF1QixFQUN2QkMsS0FBYSxFQUNiQyxZQUEwQixFQUMxQkMsZ0JBQW9DLEtBQ2pDO0VBQ0gsSUFBTUMsT0FBdUIsR0FBRyxDQUM5QjtJQUNFQyxJQUFJLEVBQUVQLFVBQVU7SUFDaEJRLEdBQUcsRUFBRU4sTUFBTSxDQUFDQyxLQUFLLENBQUMsQ0FBQ0ssR0FBRztJQUN0QkMsTUFBTSxFQUFFTCxZQUFZLEtBQUssYUFBYSxHQUFHRixNQUFNLENBQUNDLEtBQUssQ0FBQyxDQUFDTSxNQUFNLEdBQUdDO0VBQ2xFLENBQUMsQ0FDRjtFQUVELElBQUlDLGlCQUFpQjtFQUVyQixRQUFRUCxZQUFZO0lBQ2xCLEtBQUssT0FBTztNQUNWLEtBQUssSUFBSVEsQ0FBQyxHQUFHVCxLQUFLLEVBQUVTLENBQUMsR0FBRyxDQUFDLEVBQUVBLENBQUMsRUFBRSxFQUFFO1FBQzlCTixPQUFPLENBQUNPLE9BQU8sQ0FBQztVQUNkTixJQUFJLEVBQUVQLFVBQVU7VUFDaEJRLEdBQUcsRUFBRU4sTUFBTSxDQUFDVSxDQUFDLEdBQUcsQ0FBQyxDQUFDLENBQUNKO1FBQ3JCLENBQUMsQ0FBQztNQUNKO01BQ0E7SUFDRixLQUFLLFlBQVk7TUFDZixJ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
